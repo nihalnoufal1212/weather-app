@@ -1,5 +1,8 @@
 const apiKey = "YOUR_API_KEY_HERE";
 
+if(apiKey === "YOUR_API_KEY_HERE"){
+alert("Please add your OpenWeather API key in script.js");
+}
 const cityInput = document.getElementById("city");
 
 const searchBtn = document.getElementById("searchBtn");
