@@ -9,6 +9,24 @@ const status = document.getElementById("status");
 let isCelsius = true;
 
 
+/*
+CHECK API KEY
+*/
+
+if(apiKey === "YOUR_API_KEY_HERE"){
+
+status.innerHTML =
+"⚠️ Please add your OpenWeather API key inside script.js";
+
+searchBtn.disabled = true;
+
+}
+
+
+/*
+EVENT LISTENERS
+*/
+
 searchBtn.addEventListener("click", getWeather);
 
 
@@ -35,6 +53,10 @@ getWeather();
 });
 
 
+/*
+MAIN WEATHER FUNCTION
+*/
+
 async function getWeather(){
 
 const city = cityInput.value.trim();
@@ -53,13 +75,24 @@ const response = await fetch(
 
 const data = await response.json();
 
-if(data.cod !== 200){
 
-status.innerHTML = "City not found";
+if(data.cod === 401){
+
+status.innerHTML="⚠️ Invalid API key";
 
 return;
 
 }
+
+
+if(data.cod === 404){
+
+status.innerHTML="⚠️ City not found";
+
+return;
+
+}
+
 
 displayWeather(data);
 
@@ -69,39 +102,52 @@ localStorage.setItem("lastCity", city);
 
 catch{
 
-status.innerHTML = "Network error";
+status.innerHTML="⚠️ Network error";
 
 }
 
 }
 
+
+/*
+DISPLAY WEATHER
+*/
 
 function displayWeather(data){
 
 document.getElementById("weatherBox").classList.remove("hidden");
 
-status.innerHTML = "";
+status.innerHTML="";
 
-document.getElementById("cityName").innerHTML = data.name;
 
-document.getElementById("temp").innerHTML =
+document.getElementById("cityName").innerHTML=data.name;
 
-Math.round(data.main.temp) +
 
-(isCelsius ? "°C" : "°F");
+document.getElementById("temp").innerHTML=
 
-document.getElementById("condition").innerHTML =
+Math.round(data.main.temp)+
+
+(isCelsius?"°C":"°F");
+
+
+document.getElementById("condition").innerHTML=
 
 data.weather[0].main;
 
-document.getElementById("icon").src =
+
+document.getElementById("icon").src=
 
 `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+
 
 changeBackground(data.weather[0].main);
 
 }
 
+
+/*
+BACKGROUND CHANGE
+*/
 
 function changeBackground(condition){
 
@@ -124,11 +170,15 @@ document.body.style.background="#81d4fa";
 }
 
 
+/*
+CITY AUTOSUGGEST
+*/
+
 async function suggestCities(){
 
 let city = cityInput.value;
 
-if(city.length < 1){
+if(city.length<1){
 
 document.getElementById("suggestions").innerHTML="";
 
@@ -136,15 +186,19 @@ return;
 
 }
 
+
 let response = await fetch(
 
 `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`
 
 );
 
+
 let data = await response.json();
 
+
 let html="";
+
 
 data.forEach(place=>{
 
@@ -160,14 +214,19 @@ ${place.name}, ${place.country}
 
 });
 
+
 document.getElementById("suggestions").innerHTML=html;
 
 }
 
 
+/*
+SELECT CITY
+*/
+
 function selectCity(city){
 
-cityInput.value = city;
+cityInput.value=city;
 
 document.getElementById("suggestions").innerHTML="";
 
@@ -176,21 +235,29 @@ getWeather();
 }
 
 
+/*
+LOCATION WEATHER
+*/
+
 function getLocationWeather(){
 
-navigator.geolocation.getCurrentPosition(async position => {
+navigator.geolocation.getCurrentPosition(async position=>{
 
-const { latitude, longitude } = position.coords;
+const {latitude,longitude}=position.coords;
+
 
 status.innerHTML="<div class='loader'></div>";
 
-const response = await fetch(
 
-`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${isCelsius ? "metric":"imperial"}`
+const response=await fetch(
+
+`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${isCelsius?"metric":"imperial"}`
 
 );
 
-const data = await response.json();
+
+const data=await response.json();
+
 
 displayWeather(data);
 
@@ -199,9 +266,14 @@ displayWeather(data);
 }
 
 
-window.onload = () => {
+/*
+LOAD LAST SEARCH
+*/
 
-const savedCity = localStorage.getItem("lastCity");
+window.onload=()=>{
+
+const savedCity=localStorage.getItem("lastCity");
+
 
 if(savedCity){
 
