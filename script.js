@@ -1,25 +1,17 @@
 const apiKey = "YOUR_API_KEY_HERE";
 
 const cityInput = document.getElementById("city");
-
 const searchBtn = document.getElementById("searchBtn");
-
-const status = document.getElementById("status");
 
 let isCelsius = true;
 
 
 /*
-CHECK API KEY
+CHECK API KEY ONLY ONCE
 */
 
 if(apiKey === "YOUR_API_KEY_HERE"){
-
-status.innerHTML =
-"⚠️ Please add your OpenWeather API key inside script.js";
-
-searchBtn.disabled = true;
-
+alert("Please add your OpenWeather API key inside script.js");
 }
 
 
@@ -29,27 +21,16 @@ EVENT LISTENERS
 
 searchBtn.addEventListener("click", getWeather);
 
-
 cityInput.addEventListener("keypress", function(e){
-
-if(e.key==="Enter")
-
-getWeather();
-
+if(e.key==="Enter") getWeather();
 });
-
 
 cityInput.addEventListener("input", suggestCities);
 
-
 document.getElementById("unitToggle")
-
-.addEventListener("click", () => {
-
-isCelsius = !isCelsius;
-
+.addEventListener("click", ()=>{
+isCelsius=!isCelsius;
 getWeather();
-
 });
 
 
@@ -63,47 +44,31 @@ const city = cityInput.value.trim();
 
 if(!city) return;
 
-status.innerHTML = "<div class='loader'></div>";
-
 try{
 
 const response = await fetch(
-
-`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=${isCelsius ? "metric":"imperial"}`
-
+`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=${isCelsius?"metric":"imperial"}`
 );
 
 const data = await response.json();
 
 
 if(data.cod === 401){
-
-status.innerHTML="⚠️ Invalid API key";
-
+alert("Invalid API key");
 return;
-
 }
-
 
 if(data.cod === 404){
-
-status.innerHTML="⚠️ City not found";
-
+alert("City not found");
 return;
-
 }
-
 
 displayWeather(data);
 
 localStorage.setItem("lastCity", city);
 
-}
-
-catch{
-
-status.innerHTML="⚠️ Network error";
-
+}catch{
+alert("Network error");
 }
 
 }
@@ -117,28 +82,16 @@ function displayWeather(data){
 
 document.getElementById("weatherBox").classList.remove("hidden");
 
-status.innerHTML="";
-
-
 document.getElementById("cityName").innerHTML=data.name;
 
-
 document.getElementById("temp").innerHTML=
-
-Math.round(data.main.temp)+
-
-(isCelsius?"°C":"°F");
-
+Math.round(data.main.temp)+(isCelsius?"°C":"°F");
 
 document.getElementById("condition").innerHTML=
-
 data.weather[0].main;
 
-
 document.getElementById("icon").src=
-
 `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-
 
 changeBackground(data.weather[0].main);
 
@@ -152,19 +105,15 @@ BACKGROUND CHANGE
 function changeBackground(condition){
 
 if(condition.includes("Cloud"))
-
 document.body.style.background="#90a4ae";
 
 else if(condition.includes("Rain"))
-
 document.body.style.background="#4fc3f7";
 
 else if(condition.includes("Clear"))
-
 document.body.style.background="#ffd54f";
 
 else
-
 document.body.style.background="#81d4fa";
 
 }
@@ -179,41 +128,25 @@ async function suggestCities(){
 let city = cityInput.value;
 
 if(city.length<1){
-
 document.getElementById("suggestions").innerHTML="";
-
 return;
-
 }
 
-
 let response = await fetch(
-
 `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`
-
 );
-
 
 let data = await response.json();
 
-
 let html="";
 
-
 data.forEach(place=>{
-
 html+=
-
 `<div class="suggestion"
-
 onclick="selectCity('${place.name}')">
-
 ${place.name}, ${place.country}
-
 </div>`;
-
 });
-
 
 document.getElementById("suggestions").innerHTML=html;
 
@@ -225,18 +158,14 @@ SELECT CITY
 */
 
 function selectCity(city){
-
 cityInput.value=city;
-
 document.getElementById("suggestions").innerHTML="";
-
 getWeather();
-
 }
 
 
 /*
-LOCATION WEATHER
+LOCATION WEATHER FIXED VERSION
 */
 
 function getLocationWeather(){
@@ -245,21 +174,24 @@ navigator.geolocation.getCurrentPosition(async position=>{
 
 const {latitude,longitude}=position.coords;
 
-
-status.innerHTML="<div class='loader'></div>";
-
+try{
 
 const response=await fetch(
-
 `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${isCelsius?"metric":"imperial"}`
-
 );
-
 
 const data=await response.json();
 
+if(data.cod === 401){
+alert("Invalid API key");
+return;
+}
 
 displayWeather(data);
+
+}catch{
+alert("Unable to fetch location weather");
+}
 
 });
 
@@ -274,13 +206,9 @@ window.onload=()=>{
 
 const savedCity=localStorage.getItem("lastCity");
 
-
 if(savedCity){
-
 cityInput.value=savedCity;
-
 getWeather();
-
 }
 
 };
