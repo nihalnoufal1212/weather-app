@@ -1,19 +1,41 @@
-# Weather App
+# Weather App 🌦️
 
-A simple minimal weather application built using HTML, CSS and JavaScript.
+A responsive weather application built using HTML, CSS and JavaScript that fetches real-time weather data using OpenWeatherMap API.
 
 ## Features
+
 - Search weather by city name
-- Displays temperature and condition
-- Clean minimal blue UI
-- Uses OpenWeatherMap API
+- City auto-suggestion
+- Current location weather detection
+- Temperature unit toggle (°C / °F)
+- Weather-based background changes
+- Last searched city saved automatically
+- Responsive glassmorphism UI
+- Weather condition icons
 
-## Setup
+## Technologies Used
 
-1. Get a free API key from https://openweathermap.org/api
-2. Open script.js
-3. Replace:
+HTML  
+CSS  
+JavaScript  
+Fetch API  
+OpenWeatherMap API  
+Geolocation API  
+LocalStorage  
+
+## Setup Instructions
+
+1. Get API key from:
+https://openweathermap.org/api
+
+2. Replace inside script.js:
 
 const apiKey = "YOUR_API_KEY_HERE";
 
-with your API key
+3. Open index.html in browser
+
+## Future Improvements
+
+- 5-day forecast support
+- Dark mode toggle
+- React version upgrade

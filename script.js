@@ -1,11 +1,12 @@
 const apiKey = "YOUR_API_KEY_HERE";
 
-if(apiKey === "YOUR_API_KEY_HERE"){
-alert("Please add your OpenWeather API key in script.js");
-}
 const cityInput = document.getElementById("city");
 
 const searchBtn = document.getElementById("searchBtn");
+
+const status = document.getElementById("status");
+
+let isCelsius = true;
 
 
 searchBtn.addEventListener("click", getWeather);
@@ -23,90 +24,109 @@ getWeather();
 cityInput.addEventListener("input", suggestCities);
 
 
+document.getElementById("unitToggle")
+
+.addEventListener("click", () => {
+
+isCelsius = !isCelsius;
+
+getWeather();
+
+});
+
 
 async function getWeather(){
 
 const city = cityInput.value.trim();
 
-
 if(!city) return;
 
-
-document.getElementById("status").innerHTML = "Loading...";
-
+status.innerHTML = "<div class='loader'></div>";
 
 try{
 
 const response = await fetch(
 
-`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`
+`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=${isCelsius ? "metric":"imperial"}`
 
 );
 
-
 const data = await response.json();
-
 
 if(data.cod !== 200){
 
-document.getElementById("status").innerHTML = "City not found";
+status.innerHTML = "City not found";
 
 return;
 
 }
 
-
 displayWeather(data);
+
+localStorage.setItem("lastCity", city);
 
 }
 
 catch{
 
-document.getElementById("status").innerHTML = "Network error";
+status.innerHTML = "Network error";
 
 }
 
 }
-
 
 
 function displayWeather(data){
 
 document.getElementById("weatherBox").classList.remove("hidden");
 
-
-document.getElementById("status").innerHTML = "";
-
+status.innerHTML = "";
 
 document.getElementById("cityName").innerHTML = data.name;
 
-
 document.getElementById("temp").innerHTML =
 
-Math.round(data.main.temp) + "°C";
+Math.round(data.main.temp) +
 
+(isCelsius ? "°C" : "°F");
 
 document.getElementById("condition").innerHTML =
 
 data.weather[0].main;
 
-
 document.getElementById("icon").src =
 
 `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
 
+changeBackground(data.weather[0].main);
+
 }
 
 
+function changeBackground(condition){
 
-/*
-CITY AUTOSUGGEST FEATURE
-*/
+if(condition.includes("Cloud"))
+
+document.body.style.background="#90a4ae";
+
+else if(condition.includes("Rain"))
+
+document.body.style.background="#4fc3f7";
+
+else if(condition.includes("Clear"))
+
+document.body.style.background="#ffd54f";
+
+else
+
+document.body.style.background="#81d4fa";
+
+}
+
 
 async function suggestCities(){
 
 let city = cityInput.value;
-
 
 if(city.length < 1){
 
@@ -116,19 +136,15 @@ return;
 
 }
 
-
 let response = await fetch(
 
 `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`
 
 );
 
-
 let data = await response.json();
 
-
 let html="";
-
 
 data.forEach(place=>{
 
@@ -144,11 +160,9 @@ ${place.name}, ${place.country}
 
 });
 
-
 document.getElementById("suggestions").innerHTML=html;
 
 }
-
 
 
 function selectCity(city){
@@ -160,3 +174,41 @@ document.getElementById("suggestions").innerHTML="";
 getWeather();
 
 }
+
+
+function getLocationWeather(){
+
+navigator.geolocation.getCurrentPosition(async position => {
+
+const { latitude, longitude } = position.coords;
+
+status.innerHTML="<div class='loader'></div>";
+
+const response = await fetch(
+
+`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${isCelsius ? "metric":"imperial"}`
+
+);
+
+const data = await response.json();
+
+displayWeather(data);
+
+});
+
+}
+
+
+window.onload = () => {
+
+const savedCity = localStorage.getItem("lastCity");
+
+if(savedCity){
+
+cityInput.value=savedCity;
+
+getWeather();
+
+}
+
+};
