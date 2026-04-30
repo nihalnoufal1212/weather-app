@@ -131,35 +131,47 @@ margin-top:10px;
 }
 
 
-.loader{
+/* Toast notification */
 
-border:4px solid rgba(255,255,255,0.3);
+#toast{
 
-border-top:4px solid white;
+position:fixed;
 
-border-radius:50%;
+top:20px;
 
-width:30px;
+right:20px;
 
-height:30px;
+background:rgba(0,0,0,0.85);
 
-margin:auto;
+color:white;
 
-animation:spin 1s linear infinite;
+padding:14px 22px;
+
+border-radius:10px;
+
+font-size:14px;
+
+opacity:0;
+
+transform:translateY(-20px);
+
+transition:all .4s ease;
+
+z-index:999;
 
 }
 
 
-@keyframes spin{
+#toast.show{
 
-100%{
+opacity:1;
 
-transform:rotate(360deg);
-
-}
+transform:translateY(0);
 
 }
 
+
+/* Responsive */
 
 @media(max-width:400px){
 
