@@ -2,6 +2,7 @@
 
 A responsive weather application built using HTML, CSS and JavaScript that fetches real-time weather data using OpenWeatherMap API.
 
+
 ## Features
 
 - Search weather by city name
@@ -12,7 +13,8 @@ A responsive weather application built using HTML, CSS and JavaScript that fetch
 - Last searched city saved automatically
 - Responsive glassmorphism UI
 - Weather condition icons
-- API-key validation warning
+- Custom popup notification system (instead of browser alerts)
+- Loading spinner during API fetch
 
 ## Technologies Used
 
