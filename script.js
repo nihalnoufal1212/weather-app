@@ -28,6 +28,25 @@ toast.classList.remove("show");
 
 
 /*
+SHOW LOADING SPINNER
+*/
+
+function showLoader(){
+
+document.getElementById("status").innerHTML=
+"<div class='loader'></div>";
+
+}
+
+
+function hideLoader(){
+
+document.getElementById("status").innerHTML="";
+
+}
+
+
+/*
 CHECK API KEY
 */
 
@@ -82,6 +101,8 @@ return;
 
 }
 
+showLoader();
+
 try{
 
 const response=await fetch(
@@ -91,6 +112,9 @@ const response=await fetch(
 );
 
 const data=await response.json();
+
+
+hideLoader();
 
 
 if(data.cod===401){
@@ -118,6 +142,8 @@ localStorage.setItem("lastCity",city);
 }
 
 catch{
+
+hideLoader();
 
 showToast("Network error");
 
@@ -244,7 +270,7 @@ getWeather();
 
 
 /*
-LOCATION WEATHER FIXED
+LOCATION WEATHER
 */
 
 function getLocationWeather(){
@@ -252,6 +278,8 @@ function getLocationWeather(){
 navigator.geolocation.getCurrentPosition(async position=>{
 
 const {latitude,longitude}=position.coords;
+
+showLoader();
 
 try{
 
@@ -262,6 +290,9 @@ const response=await fetch(
 );
 
 const data=await response.json();
+
+
+hideLoader();
 
 
 if(data.cod===401){
@@ -278,6 +309,8 @@ displayWeather(data);
 }
 
 catch{
+
+hideLoader();
 
 showToast("Unable to fetch location weather");
 
