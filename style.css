@@ -206,3 +206,32 @@ transform:rotate(360deg);
 }
 
 }
+/* Recent search dropdown */
+
+#recentSearches{
+
+text-align:left;
+
+margin-top:10px;
+
+}
+
+.recentItem{
+
+padding:8px;
+
+cursor:pointer;
+
+background:rgba(255,255,255,0.15);
+
+border-radius:6px;
+
+margin-bottom:5px;
+
+}
+
+.recentItem:hover{
+
+background:rgba(255,255,255,0.3);
+
+}
