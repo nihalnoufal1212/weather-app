@@ -1,14 +1,12 @@
-const apiKey = "a75a946c55ba8911eae8e56757138a16";
+const apiKey="a75a946c55ba8911eae8e56757138a16";
 
-const cityInput = document.getElementById("city");
-const searchBtn = document.getElementById("searchBtn");
+const cityInput=document.getElementById("city");
+const searchBtn=document.getElementById("searchBtn");
 
-let isCelsius = true;
+let isCelsius=true;
 
 
-/*
-TOAST NOTIFICATION FUNCTION
-*/
+/* TOAST FUNCTION */
 
 function showToast(message){
 
@@ -27,9 +25,7 @@ toast.classList.remove("show");
 }
 
 
-/*
-SHOW LOADING SPINNER
-*/
+/* LOADER */
 
 function showLoader(){
 
@@ -38,7 +34,6 @@ document.getElementById("status").innerHTML=
 
 }
 
-
 function hideLoader(){
 
 document.getElementById("status").innerHTML="";
@@ -46,33 +41,20 @@ document.getElementById("status").innerHTML="";
 }
 
 
-/*
-CHECK API KEY
-*/
-
-if(apiKey==="YOUR_API_KEY_HERE"){
-
-showToast("Please add your OpenWeather API key inside script.js");
-
-}
-
-
-/*
-EVENT LISTENERS
-*/
+/* EVENT LISTENERS */
 
 searchBtn.addEventListener("click",getWeather);
 
 cityInput.addEventListener("keypress",function(e){
 
-if(e.key==="Enter")
-
-getWeather();
+if(e.key==="Enter") getWeather();
 
 });
 
-cityInput.addEventListener("input",suggestCities);
+cityInput.addEventListener("input",handleInput);
 
+
+/* UNIT TOGGLE */
 
 document.getElementById("unitToggle")
 
@@ -85,9 +67,32 @@ getWeather();
 });
 
 
-/*
-MAIN WEATHER FUNCTION
-*/
+/* HANDLE INPUT FIELD */
+
+function handleInput(){
+
+const value=cityInput.value.trim();
+
+if(value===""){
+
+showRecentSearches();
+
+document.getElementById("suggestions").innerHTML="";
+
+}
+
+else{
+
+suggestCities();
+
+document.getElementById("recentSearches").innerHTML="";
+
+}
+
+}
+
+
+/* WEATHER FETCH */
 
 async function getWeather(){
 
@@ -95,7 +100,7 @@ const city=cityInput.value.trim();
 
 if(!city){
 
-showToast("Enter a city name first");
+showToast("Enter city name first");
 
 return;
 
@@ -108,14 +113,11 @@ try{
 const response=await fetch(
 
 `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=${isCelsius?"metric":"imperial"}`
-
 );
 
 const data=await response.json();
 
-
 hideLoader();
-
 
 if(data.cod===401){
 
@@ -125,7 +127,6 @@ return;
 
 }
 
-
 if(data.cod===404){
 
 showToast("City not found");
@@ -134,10 +135,9 @@ return;
 
 }
 
-
 displayWeather(data);
 
-localStorage.setItem("lastCity",city);
+saveRecent(city);
 
 }
 
@@ -152,21 +152,19 @@ showToast("Network error");
 }
 
 
-/*
-DISPLAY WEATHER
-*/
+/* DISPLAY WEATHER */
 
 function displayWeather(data){
 
 document.getElementById("weatherBox").classList.remove("hidden");
 
-document.getElementById("cityName").innerHTML=data.name;
+document.getElementById("cityName").innerText=data.name;
 
-document.getElementById("temp").innerHTML=
+document.getElementById("temp").innerText=
 
 Math.round(data.main.temp)+(isCelsius?"°C":"°F");
 
-document.getElementById("condition").innerHTML=
+document.getElementById("condition").innerText=
 
 data.weather[0].main;
 
@@ -179,9 +177,7 @@ changeBackground(data.weather[0].main);
 }
 
 
-/*
-BACKGROUND CHANGE
-*/
+/* BACKGROUND */
 
 function changeBackground(condition){
 
@@ -204,9 +200,7 @@ document.body.style.background="#81d4fa";
 }
 
 
-/*
-CITY AUTOSUGGEST
-*/
+/* AUTOSUGGEST */
 
 async function suggestCities(){
 
@@ -220,19 +214,14 @@ return;
 
 }
 
-
 let response=await fetch(
 
 `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`
-
 );
-
 
 let data=await response.json();
 
-
 let html="";
-
 
 data.forEach(place=>{
 
@@ -248,15 +237,12 @@ ${place.name}, ${place.country}
 
 });
 
-
 document.getElementById("suggestions").innerHTML=html;
 
 }
 
 
-/*
-SELECT CITY
-*/
+/* SELECT CITY */
 
 function selectCity(city){
 
@@ -269,9 +255,7 @@ getWeather();
 }
 
 
-/*
-LOCATION WEATHER
-*/
+/* LOCATION WEATHER */
 
 function getLocationWeather(){
 
@@ -286,23 +270,11 @@ try{
 const response=await fetch(
 
 `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${isCelsius?"metric":"imperial"}`
-
 );
 
 const data=await response.json();
 
-
 hideLoader();
-
-
-if(data.cod===401){
-
-showToast("Invalid API key");
-
-return;
-
-}
-
 
 displayWeather(data);
 
@@ -312,7 +284,7 @@ catch{
 
 hideLoader();
 
-showToast("Unable to fetch location weather");
+showToast("Location fetch failed");
 
 }
 
@@ -321,20 +293,54 @@ showToast("Unable to fetch location weather");
 }
 
 
-/*
-LOAD LAST SEARCH
-*/
+/* RECENT SEARCH STORAGE */
+
+function saveRecent(city){
+
+let recent=JSON.parse(localStorage.getItem("recentCities"))||[];
+
+recent=recent.filter(item=>item!==city);
+
+recent.unshift(city);
+
+if(recent.length>5) recent.pop();
+
+localStorage.setItem("recentCities",JSON.stringify(recent));
+
+}
+
+
+/* SHOW RECENT SEARCHES */
+
+function showRecentSearches(){
+
+let recent=JSON.parse(localStorage.getItem("recentCities"))||[];
+
+let html="";
+
+recent.forEach(city=>{
+
+html+=
+
+`<div class="recentItem"
+
+onclick="selectCity('${city}')">
+
+${city}
+
+</div>`;
+
+});
+
+document.getElementById("recentSearches").innerHTML=html;
+
+}
+
+
+/* LOAD LAST SEARCH */
 
 window.onload=()=>{
 
-const savedCity=localStorage.getItem("lastCity");
-
-if(savedCity){
-
-cityInput.value=savedCity;
-
-getWeather();
-
-}
+showRecentSearches();
 
 };
