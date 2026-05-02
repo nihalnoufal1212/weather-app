@@ -15,6 +15,7 @@ A responsive weather application built using HTML, CSS and JavaScript that fetch
 - Weather condition icons
 - Custom popup notification system (instead of browser alerts)
 - Loading spinner during API fetch
+- Recent search history dropdown
 
 ## Technologies Used
 
