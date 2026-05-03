@@ -1,133 +1,73 @@
-const apiKey="Give API";
+const cityInput = document.getElementById("city-input");
 
-const cityInput=document.getElementById("city");
-const searchBtn=document.getElementById("searchBtn");
+const searchBtn = document.getElementById("search-btn");
 
-let isCelsius=true;
+const locationBtn = document.getElementById("location-btn");
+
+const weatherCard = document.getElementById("weather-card");
+
+const forecastContainer = document.getElementById("hourly-forecast");
 
 
-/* TOAST FUNCTION */
 
-function showToast(message){
+/* TOAST POPUP FUNCTION */
 
-const toast=document.getElementById("toast");
+function showToast(message) {
 
-toast.innerText=message;
+const toast = document.getElementById("toast");
 
-toast.classList.add("show");
+toast.textContent = message;
 
-setTimeout(()=>{
+toast.className = "show";
 
-toast.classList.remove("show");
+setTimeout(() => {
+
+toast.className = toast.className.replace("show","");
 
 },2500);
 
 }
 
 
-/* LOADER */
 
-function showLoader(){
+/* SEARCH BUTTON */
 
-document.getElementById("status").innerHTML=
-"<div class='loader'></div>";
+searchBtn.addEventListener("click", () => {
 
-}
-
-function hideLoader(){
-
-document.getElementById("status").innerHTML="";
-
-}
-
-
-/* EVENT LISTENERS */
-
-searchBtn.addEventListener("click",getWeather);
-
-cityInput.addEventListener("keypress",function(e){
-
-if(e.key==="Enter") getWeather();
-
-});
-
-cityInput.addEventListener("input",handleInput);
-
-
-/* UNIT TOGGLE */
-
-document.getElementById("unitToggle")
-
-.addEventListener("click",()=>{
-
-isCelsius=!isCelsius;
-
-getWeather();
-
-});
-
-
-/* HANDLE INPUT FIELD */
-
-function handleInput(){
-
-const value=cityInput.value.trim();
-
-if(value===""){
-
-showRecentSearches();
-
-document.getElementById("suggestions").innerHTML="";
-
-}
-
-else{
-
-suggestCities();
-
-document.getElementById("recentSearches").innerHTML="";
-
-}
-
-}
-
-
-/* WEATHER FETCH */
-
-async function getWeather(){
-
-const city=cityInput.value.trim();
+const city = cityInput.value.trim();
 
 if(!city){
 
-showToast("Enter city name first");
+showToast("Enter a city name");
 
 return;
 
 }
 
-showLoader();
+getWeather(city);
+
+getHourlyForecast(city);
+
+});
+
+
+
+/* CURRENT WEATHER FUNCTION */
+
+async function getWeather(city){
 
 try{
 
-const response=await fetch(
+const response = await fetch(
 
-`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=${isCelsius?"metric":"imperial"}`
+`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+
 );
 
-const data=await response.json();
+const data = await response.json();
 
-hideLoader();
 
-if(data.cod===401){
-
-showToast("Invalid API key");
-
-return;
-
-}
-
-if(data.cod===404){
+if(data.cod !== 200){
 
 showToast("City not found");
 
@@ -135,15 +75,23 @@ return;
 
 }
 
-displayWeather(data);
 
-saveRecent(city);
+const icon = data.weather[0].icon;
 
-}
 
-catch{
+weatherCard.innerHTML = `
 
-hideLoader();
+<h2>${data.name}</h2>
+
+<img src="https://openweathermap.org/img/wn/${icon}@2x.png">
+
+<h1>${Math.round(data.main.temp)}°C</h1>
+
+<p>${data.weather[0].description}</p>
+
+`;
+
+}catch{
 
 showToast("Network error");
 
@@ -152,195 +100,160 @@ showToast("Network error");
 }
 
 
-/* DISPLAY WEATHER */
 
-function displayWeather(data){
+/* HOURLY FORECAST FUNCTION ⭐ */
 
-document.getElementById("weatherBox").classList.remove("hidden");
+async function getHourlyForecast(city){
 
-document.getElementById("cityName").innerText=data.name;
+forecastContainer.innerHTML = "";
 
-document.getElementById("temp").innerText=
+try{
 
-Math.round(data.main.temp)+(isCelsius?"°C":"°F");
+const response = await fetch(
 
-document.getElementById("condition").innerText=
+`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`
 
-data.weather[0].main;
-
-document.getElementById("icon").src=
-
-`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-
-changeBackground(data.weather[0].main);
-
-}
-
-
-/* BACKGROUND */
-
-function changeBackground(condition){
-
-if(condition.includes("Cloud"))
-
-document.body.style.background="#90a4ae";
-
-else if(condition.includes("Rain"))
-
-document.body.style.background="#4fc3f7";
-
-else if(condition.includes("Clear"))
-
-document.body.style.background="#ffd54f";
-
-else
-
-document.body.style.background="#81d4fa";
-
-}
-
-
-/* AUTOSUGGEST */
-
-async function suggestCities(){
-
-let city=cityInput.value;
-
-if(city.length<1){
-
-document.getElementById("suggestions").innerHTML="";
-
-return;
-
-}
-
-let response=await fetch(
-
-`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`
 );
 
-let data=await response.json();
+const data = await response.json();
 
-let html="";
+const forecastList = data.list.slice(0,5);
 
-data.forEach(place=>{
 
-html+=
+forecastList.forEach(item => {
 
-`<div class="suggestion"
+const time = item.dt_txt.split(" ")[1].slice(0,5);
 
-onclick="selectCity('${place.name}')">
+const temp = Math.round(item.main.temp);
 
-${place.name}, ${place.country}
+const icon = item.weather[0].icon;
 
-</div>`;
+
+const card = document.createElement("div");
+
+card.classList.add("forecast-card");
+
+
+card.innerHTML = `
+
+<p>${time}</p>
+
+<img src="https://openweathermap.org/img/wn/${icon}@2x.png">
+
+<p>${temp}°C</p>
+
+`;
+
+forecastContainer.appendChild(card);
 
 });
 
-document.getElementById("suggestions").innerHTML=html;
+}catch{
+
+showToast("Forecast loading failed");
+
+}
 
 }
 
 
-/* SELECT CITY */
 
-function selectCity(city){
+/* LOCATION BUTTON */
 
-cityInput.value=city;
+locationBtn.addEventListener("click", () => {
 
-document.getElementById("suggestions").innerHTML="";
+navigator.geolocation.getCurrentPosition(position => {
 
-getWeather();
+const lat = position.coords.latitude;
 
-}
+const lon = position.coords.longitude;
+
+
+getWeatherByCoords(lat,lon);
+
+getForecastByCoords(lat,lon);
+
+});
+
+});
+
 
 
 /* LOCATION WEATHER */
 
-function getLocationWeather(){
+async function getWeatherByCoords(lat,lon){
 
-navigator.geolocation.getCurrentPosition(async position=>{
+const response = await fetch(
 
-const {latitude,longitude}=position.coords;
+`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
 
-showLoader();
-
-try{
-
-const response=await fetch(
-
-`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${isCelsius?"metric":"imperial"}`
 );
 
-const data=await response.json();
+const data = await response.json();
 
-hideLoader();
 
-displayWeather(data);
+const icon = data.weather[0].icon;
+
+
+weatherCard.innerHTML = `
+
+<h2>${data.name}</h2>
+
+<img src="https://openweathermap.org/img/wn/${icon}@2x.png">
+
+<h1>${Math.round(data.main.temp)}°C</h1>
+
+<p>${data.weather[0].description}</p>
+
+`;
 
 }
 
-catch{
 
-hideLoader();
 
-showToast("Location fetch failed");
+/* LOCATION FORECAST */
 
-}
+async function getForecastByCoords(lat,lon){
+
+forecastContainer.innerHTML = "";
+
+const response = await fetch(
+
+`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+
+);
+
+const data = await response.json();
+
+const forecastList = data.list.slice(0,5);
+
+
+forecastList.forEach(item => {
+
+const time = item.dt_txt.split(" ")[1].slice(0,5);
+
+const temp = Math.round(item.main.temp);
+
+const icon = item.weather[0].icon;
+
+
+const card = document.createElement("div");
+
+card.classList.add("forecast-card");
+
+
+card.innerHTML = `
+
+<p>${time}</p>
+
+<img src="https://openweathermap.org/img/wn/${icon}@2x.png">
+
+<p>${temp}°C</p>
+
+`;
+
+forecastContainer.appendChild(card);
 
 });
 
 }
-
-
-/* RECENT SEARCH STORAGE */
-
-function saveRecent(city){
-
-let recent=JSON.parse(localStorage.getItem("recentCities"))||[];
-
-recent=recent.filter(item=>item!==city);
-
-recent.unshift(city);
-
-if(recent.length>5) recent.pop();
-
-localStorage.setItem("recentCities",JSON.stringify(recent));
-
-}
-
-
-/* SHOW RECENT SEARCHES */
-
-function showRecentSearches(){
-
-let recent=JSON.parse(localStorage.getItem("recentCities"))||[];
-
-let html="";
-
-recent.forEach(city=>{
-
-html+=
-
-`<div class="recentItem"
-
-onclick="selectCity('${city}')">
-
-${city}
-
-</div>`;
-
-});
-
-document.getElementById("recentSearches").innerHTML=html;
-
-}
-
-
-/* LOAD LAST SEARCH */
-
-window.onload=()=>{
-
-showRecentSearches();
-
-};
