@@ -1,237 +1,164 @@
-body{
+body {
 
-margin:0;
+font-family: Arial, sans-serif;
 
-font-family:Poppins;
+background: linear-gradient(135deg,#4facfe,#00f2fe);
 
-height:100vh;
+color: white;
 
-display:flex;
+text-align: center;
 
-justify-content:center;
-
-align-items:center;
-
-background:linear-gradient(135deg,#4facfe,#00c6ff);
-
-color:white;
+margin: 0;
 
 }
 
 
-.container{
+.container {
 
-background:rgba(255,255,255,0.15);
-
-padding:40px;
-
-border-radius:20px;
-
-text-align:center;
-
-backdrop-filter:blur(12px);
-
-box-shadow:0px 10px 30px rgba(0,0,0,0.2);
-
-width:320px;
+margin-top: 50px;
 
 }
 
 
-.searchBox{
+input {
 
-display:flex;
+padding: 10px;
 
-gap:10px;
+width: 220px;
 
-}
+border-radius: 8px;
 
+border: none;
 
-input{
-
-padding:12px;
-
-border-radius:10px;
-
-border:none;
-
-flex:1;
+outline: none;
 
 }
 
 
-button{
+.button-group {
 
-padding:12px;
-
-border-radius:10px;
-
-border:none;
-
-background:white;
-
-color:#0077ff;
-
-cursor:pointer;
-
-font-weight:600;
-
-transition:.2s;
-
-margin-top:10px;
+margin-top: 10px;
 
 }
 
 
-button:hover{
+button {
 
-transform:scale(1.05);
+padding: 10px 16px;
 
-}
+margin: 5px;
 
+border: none;
 
-#suggestions{
+border-radius: 8px;
 
-text-align:left;
+cursor: pointer;
 
-margin-top:10px;
-
-}
-
-
-.suggestion{
-
-padding:8px;
-
-cursor:pointer;
+font-weight: bold;
 
 }
 
 
-.suggestion:hover{
+#weather-card {
 
-background:rgba(255,255,255,0.2);
-
-}
-
-
-.hidden{
-
-display:none;
+margin-top: 25px;
 
 }
 
 
-img{
+#forecast-container {
 
-width:80px;
-
-margin-top:10px;
+margin-top: 30px;
 
 }
 
 
-/* Toast notification */
+#hourly-forecast {
 
-/* Center popup notification */
+display: flex;
 
-#toast{
+justify-content: center;
 
-position:fixed;
+gap: 15px;
 
-top:50%;
+overflow-x: auto;
 
-left:50%;
-
-transform:translate(-50%, -50%) scale(0.8);
-
-background:rgba(0,0,0,0.85);
-
-color:white;
-
-padding:18px 28px;
-
-border-radius:12px;
-
-font-size:16px;
-
-opacity:0;
-
-transition:all .35s ease;
-
-z-index:999;
-
-text-align:center;
-
-min-width:220px;
-
-box-shadow:0px 10px 40px rgba(0,0,0,0.35);
-
-backdrop-filter:blur(6px);
+padding: 10px;
 
 }
 
 
-#toast.show{
+.forecast-card {
 
-opacity:1;
+background: rgba(255,255,255,0.2);
 
-transform:translate(-50%, -50%) scale(1);
+backdrop-filter: blur(10px);
 
-}
-.loader{
+padding: 12px;
 
-border:4px solid rgba(255,255,255,0.3);
+border-radius: 12px;
 
-border-top:4px solid white;
-
-border-radius:50%;
-
-width:30px;
-
-height:30px;
-
-margin:20px auto;
-
-animation:spin 1s linear infinite;
+min-width: 80px;
 
 }
 
-@keyframes spin{
 
-100%{
+.forecast-card img {
 
-transform:rotate(360deg);
-
-}
-
-}
-/* Recent search dropdown */
-
-#recentSearches{
-
-text-align:left;
-
-margin-top:10px;
+width: 40px;
 
 }
 
-.recentItem{
 
-padding:8px;
+/* Toast popup */
 
-cursor:pointer;
+#toast {
 
-background:rgba(255,255,255,0.15);
+visibility: hidden;
 
-border-radius:6px;
+min-width: 200px;
 
-margin-bottom:5px;
+background: black;
+
+color: white;
+
+padding: 12px;
+
+border-radius: 8px;
+
+position: fixed;
+
+top: 40%;
+
+left: 50%;
+
+transform: translate(-50%,-50%);
 
 }
 
-.recentItem:hover{
 
-background:rgba(255,255,255,0.3);
+#toast.show {
+
+visibility: visible;
+
+animation: fadein 0.5s, fadeout 0.5s 2s;
+
+}
+
+
+@keyframes fadein {
+
+from {opacity:0;}
+
+to {opacity:1;}
+
+}
+
+
+@keyframes fadeout {
+
+from {opacity:1;}
+
+to {opacity:0;}
 
 }
