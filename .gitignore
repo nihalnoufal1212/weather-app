@@ -1,2 +1,4 @@
-.vscode/ 
-a75a946c55ba8911eae8e56757138a16
+.vscode/
+apikey.js
+.env
+node_modules/
