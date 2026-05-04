@@ -1,17 +1,17 @@
-# 🌦️ Weather Dashboard (Vanilla JavaScript Project)
+# 🌦️ Weather Dashboard (Vanilla JavaScript)
 
-A modern **Weather Dashboard Web App** built using **HTML, CSS, and Vanilla JavaScript** that displays real-time weather information along with an hourly forecast preview using the OpenWeather API.
+A modern **Weather Dashboard Web App** built using **HTML, CSS, and Vanilla JavaScript**, featuring real-time weather data, hourly forecast, theme switching, and unit conversion.
 
-This project is being upgraded step-by-step into a **portfolio-level frontend dashboard application** by adding one feature at a time.
+This project is being developed step-by-step into a **portfolio-level frontend application**.
 
 ---
 
 ## 🚀 Features
 
-### Current Weather
+### 🌍 Current Weather
 
-* Search weather by city name
-* Detect weather using current location (Geolocation API)
+* Search weather by city
+* Get weather using current location (Geolocation API)
 * Displays:
 
   * Temperature
@@ -19,24 +19,64 @@ This project is being upgraded step-by-step into a **portfolio-level frontend da
   * Weather icon
   * City name
 
-### Hourly Forecast (Latest Upgrade ⭐)
+---
 
-* Shows next **5 upcoming forecast time slots**
+### ⏱️ Hourly Forecast ⭐
+
+* Shows next **5 forecast time slots**
 * Displays:
 
   * Time
-  * Weather icon
   * Temperature
-* Uses OpenWeather **5-day / 3-hour forecast API**
+  * Weather icon
+* Uses OpenWeather **forecast API**
 
-### User Experience Enhancements
+---
 
-* Custom toast popup notifications
-* Input validation handling
-* Network error handling
-* City-not-found handling
-* Clean responsive layout
-* Smooth UI updates without page refresh
+### 🌡️ Temperature Unit Toggle
+
+* Switch between:
+
+  * Celsius (°C)
+  * Fahrenheit (°F)
+* Preference saved using **localStorage**
+
+---
+
+### 🌙 Dark Mode Toggle
+
+* Toggle between light and dark themes
+* Automatically saves user preference
+* Persistent after page reload
+
+---
+
+### 🔔 Toast Notification System
+
+Custom popup alerts for:
+
+* Empty input
+* Invalid API key
+* City not found
+* Network errors
+
+---
+
+### 📍 Location Weather
+
+* Uses browser **Geolocation API**
+* Fetches weather based on user location
+
+---
+
+### ⚡ Smart API Handling
+
+* Uses **fallback API key system**
+* Supports:
+
+  * `apikey.js` (secure local file)
+  * fallback key inside `script.js`
+* Prevents app from breaking during development
 
 ---
 
@@ -46,104 +86,111 @@ This project is being upgraded step-by-step into a **portfolio-level frontend da
 * CSS3
 * JavaScript (Vanilla JS)
 * OpenWeatherMap API
-* Geolocation API
 * Fetch API
 * Async / Await
 * DOM Manipulation
+* LocalStorage
+* Geolocation API
 
 ---
 
 ## 📦 Project Structure
 
+```
 weather-dashboard/
 │
 ├── index.html
 ├── style.css
 ├── script.js
-├── apikey.js (ignored from GitHub)
+├── apikey.js   (ignored in GitHub)
+├── .gitignore
 └── README.md
+```
 
 ---
 
-## 🔐 API Key Security
+## 🔐 API Key Handling
 
-The API key is stored in:
+The API key is **not exposed on GitHub**.
 
-apikey.js
+### Method used:
 
-This file is excluded from version control using:
+* Stored in `apikey.js`
+* Ignored using `.gitignore`
 
-.gitignore
+### Optional fallback:
 
-Example:
-
-const API_KEY = "YOUR_API_KEY_HERE";
+A local API key is used inside `script.js` for development.
 
 ---
 
-## 📡 API Used
+## 📡 API Endpoints
 
-OpenWeather API
+### Current Weather:
 
-Endpoints:
-
-Current weather:
 https://api.openweathermap.org/data/2.5/weather
 
-Forecast data:
+### Forecast Data:
+
 https://api.openweathermap.org/data/2.5/forecast
 
 ---
 
 ## ▶️ How to Run Locally
 
-1. Clone repository
+1. Clone the repository
 
+```
 git clone <your-repo-link>
+```
 
-2. Create file:
+2. Create a file:
 
+```
 apikey.js
+```
 
 3. Add your API key:
 
+```
 const API_KEY = "YOUR_API_KEY_HERE";
+```
 
 4. Open:
 
+```
 index.html
+```
 
 ---
 
-## 📈 Learning Goals of This Project
+## 📈 Learning Outcomes
 
 This project demonstrates:
 
-* Working with REST APIs
-* Async JavaScript programming
-* Time-series forecast parsing
-* UI rendering using DOM manipulation
-* Error handling in frontend apps
-* Secure API key handling in frontend projects
-* Building dashboard-style layouts without frameworks
+* Working with real-world APIs
+* Handling asynchronous data
+* Building dynamic UI using DOM
+* Managing application state
+* Creating reusable UI components
+* Implementing theme persistence
+* Secure handling of API keys in frontend projects
+* Time-series forecast processing
 
 ---
 
-## 🔮 Planned Improvements
+## 🔮 Future Improvements
 
-Upcoming upgrades:
-
-* Dark mode toggle
-* Search history dropdown
-* Weather-based dynamic background
-* Deployment on Netlify / Vercel
-* README screenshots
-* React version upgrade
+* Search history dropdown (clickable)
+* Weather-based background animations
+* Deploy on Netlify / Vercel
+* Add screenshots to README
+* Convert project to React
 
 ---
 
 ## 👨‍💻 Author
 
-Built by Nihal Noufal
+**Nihal Noufal**
 
-Frontend learning project focused on building **internship-level JavaScript dashboard applications**
+Frontend developer in progress, building real-world projects step-by-step 🚀
