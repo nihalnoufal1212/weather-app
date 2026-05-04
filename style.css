@@ -1,164 +1,102 @@
 body {
-
 font-family: Arial, sans-serif;
-
 background: linear-gradient(135deg,#4facfe,#00f2fe);
-
 color: white;
-
 text-align: center;
-
 margin: 0;
-
 }
-
 
 .container {
-
 margin-top: 50px;
-
 }
-
 
 input {
-
 padding: 10px;
-
 width: 220px;
-
 border-radius: 8px;
-
 border: none;
-
 outline: none;
-
 }
-
 
 .button-group {
-
 margin-top: 10px;
-
 }
-
 
 button {
-
 padding: 10px 16px;
-
 margin: 5px;
-
 border: none;
-
 border-radius: 8px;
-
 cursor: pointer;
-
 font-weight: bold;
-
 }
-
 
 #weather-card {
-
 margin-top: 25px;
-
 }
-
 
 #forecast-container {
-
 margin-top: 30px;
-
 }
-
 
 #hourly-forecast {
-
 display: flex;
-
 justify-content: center;
-
 gap: 15px;
-
 overflow-x: auto;
-
 padding: 10px;
-
 }
-
 
 .forecast-card {
-
 background: rgba(255,255,255,0.2);
-
 backdrop-filter: blur(10px);
-
 padding: 12px;
-
 border-radius: 12px;
-
 min-width: 80px;
-
 }
-
 
 .forecast-card img {
-
 width: 40px;
-
 }
 
-
-/* Toast popup */
-
+/* Toast */
 #toast {
-
 visibility: hidden;
-
-min-width: 200px;
-
 background: black;
-
 color: white;
-
 padding: 12px;
-
 border-radius: 8px;
-
 position: fixed;
-
 top: 40%;
-
 left: 50%;
-
 transform: translate(-50%,-50%);
-
 }
-
 
 #toast.show {
-
 visibility: visible;
-
 animation: fadein 0.5s, fadeout 0.5s 2s;
-
 }
-
 
 @keyframes fadein {
-
 from {opacity:0;}
-
 to {opacity:1;}
-
 }
 
-
 @keyframes fadeout {
-
 from {opacity:1;}
-
 to {opacity:0;}
+}
 
+/* Dark Mode */
+body.dark {
+background: linear-gradient(135deg,#141e30,#243b55);
+}
+
+body.dark input {
+background: #333;
+color: white;
+}
+
+body.dark .forecast-card {
+background: rgba(0,0,0,0.4);
 }
