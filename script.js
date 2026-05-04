@@ -1,259 +1,182 @@
 const cityInput = document.getElementById("city-input");
-
 const searchBtn = document.getElementById("search-btn");
-
 const locationBtn = document.getElementById("location-btn");
-
 const weatherCard = document.getElementById("weather-card");
-
 const forecastContainer = document.getElementById("hourly-forecast");
+const unitBtn = document.getElementById("unit-toggle");
+const themeBtn = document.getElementById("theme-toggle");
 
+let currentUnit = localStorage.getItem("unit") || "metric";
+let lastCity = "";
 
+/* Helpers */
+function getUnitSymbol(){
+return currentUnit === "metric" ? "°C" : "°F";
+}
 
-/* TOAST POPUP FUNCTION */
+function updateUnitBtn(){
+unitBtn.textContent =
+currentUnit === "metric" ? "Switch to °F" : "Switch to °C";
+}
 
-function showToast(message) {
+updateUnitBtn();
 
+/* Toast */
+function showToast(message){
 const toast = document.getElementById("toast");
-
 toast.textContent = message;
-
 toast.className = "show";
-
-setTimeout(() => {
-
-toast.className = toast.className.replace("show","");
-
-},2500);
-
+setTimeout(()=>toast.className="",2500);
 }
 
-
-
-/* SEARCH BUTTON */
-
-searchBtn.addEventListener("click", () => {
-
-const city = cityInput.value.trim();
-
-if(!city){
-
-showToast("Enter a city name");
-
-return;
-
+/* Theme */
+if(localStorage.getItem("theme")==="dark"){
+document.body.classList.add("dark");
+themeBtn.textContent="☀️ Light Mode";
 }
 
-getWeather(city);
-
-getHourlyForecast(city);
-
+themeBtn.addEventListener("click",()=>{
+document.body.classList.toggle("dark");
+if(document.body.classList.contains("dark")){
+localStorage.setItem("theme","dark");
+themeBtn.textContent="☀️ Light Mode";
+}else{
+localStorage.setItem("theme","light");
+themeBtn.textContent="🌙 Dark Mode";
+}
 });
 
+/* Unit toggle */
+unitBtn.addEventListener("click",()=>{
+currentUnit = currentUnit==="metric" ? "imperial" : "metric";
+localStorage.setItem("unit",currentUnit);
+updateUnitBtn();
 
-
-/* CURRENT WEATHER FUNCTION */
-
-async function getWeather(city){
-
-try{
-
-const response = await fetch(
-
-`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
-
-);
-
-const data = await response.json();
-
-
-if(data.cod !== 200){
-
-showToast("City not found");
-
-return;
-
+if(lastCity){
+getWeather(lastCity);
+getHourlyForecast(lastCity);
 }
+});
 
+/* Search */
+searchBtn.addEventListener("click",()=>{
+const city = cityInput.value.trim();
+if(!city){
+showToast("Enter city name");
+return;
+}
+lastCity = city;
+getWeather(city);
+getHourlyForecast(city);
+});
+
+/* Weather */
+async function getWeather(city){
+try{
+const res = await fetch(
+`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=${currentUnit}`
+);
+const data = await res.json();
+
+if(data.cod!==200){
+showToast("City not found");
+return;
+}
 
 const icon = data.weather[0].icon;
 
-
-weatherCard.innerHTML = `
-
+weatherCard.innerHTML=`
 <h2>${data.name}</h2>
-
 <img src="https://openweathermap.org/img/wn/${icon}@2x.png">
-
-<h1>${Math.round(data.main.temp)}°C</h1>
-
+<h1>${Math.round(data.main.temp)}${getUnitSymbol()}</h1>
 <p>${data.weather[0].description}</p>
-
 `;
 
 }catch{
-
 showToast("Network error");
-
+}
 }
 
-}
-
-
-
-/* HOURLY FORECAST FUNCTION ⭐ */
-
+/* Forecast */
 async function getHourlyForecast(city){
-
-forecastContainer.innerHTML = "";
+forecastContainer.innerHTML="";
 
 try{
-
-const response = await fetch(
-
-`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`
-
+const res = await fetch(
+`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=${currentUnit}`
 );
+const data = await res.json();
 
-const data = await response.json();
-
-const forecastList = data.list.slice(0,5);
-
-
-forecastList.forEach(item => {
-
+data.list.slice(0,5).forEach(item=>{
 const time = item.dt_txt.split(" ")[1].slice(0,5);
-
 const temp = Math.round(item.main.temp);
-
 const icon = item.weather[0].icon;
 
-
 const card = document.createElement("div");
-
 card.classList.add("forecast-card");
 
-
-card.innerHTML = `
-
+card.innerHTML=`
 <p>${time}</p>
-
 <img src="https://openweathermap.org/img/wn/${icon}@2x.png">
-
-<p>${temp}°C</p>
-
+<p>${temp}${getUnitSymbol()}</p>
 `;
 
 forecastContainer.appendChild(card);
-
 });
 
 }catch{
-
-showToast("Forecast loading failed");
-
+showToast("Forecast failed");
+}
 }
 
-}
-
-
-
-/* LOCATION BUTTON */
-
-locationBtn.addEventListener("click", () => {
-
-navigator.geolocation.getCurrentPosition(position => {
-
-const lat = position.coords.latitude;
-
-const lon = position.coords.longitude;
-
-
+/* Location */
+locationBtn.addEventListener("click",()=>{
+navigator.geolocation.getCurrentPosition(pos=>{
+const lat = pos.coords.latitude;
+const lon = pos.coords.longitude;
 getWeatherByCoords(lat,lon);
-
 getForecastByCoords(lat,lon);
-
 });
-
 });
-
-
-
-/* LOCATION WEATHER */
 
 async function getWeatherByCoords(lat,lon){
-
-const response = await fetch(
-
-`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
-
+const res = await fetch(
+`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${currentUnit}`
 );
-
-const data = await response.json();
-
+const data = await res.json();
 
 const icon = data.weather[0].icon;
 
-
-weatherCard.innerHTML = `
-
+weatherCard.innerHTML=`
 <h2>${data.name}</h2>
-
 <img src="https://openweathermap.org/img/wn/${icon}@2x.png">
-
-<h1>${Math.round(data.main.temp)}°C</h1>
-
+<h1>${Math.round(data.main.temp)}${getUnitSymbol()}</h1>
 <p>${data.weather[0].description}</p>
-
 `;
-
 }
 
-
-
-/* LOCATION FORECAST */
-
 async function getForecastByCoords(lat,lon){
+forecastContainer.innerHTML="";
 
-forecastContainer.innerHTML = "";
-
-const response = await fetch(
-
-`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
-
+const res = await fetch(
+`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${currentUnit}`
 );
+const data = await res.json();
 
-const data = await response.json();
-
-const forecastList = data.list.slice(0,5);
-
-
-forecastList.forEach(item => {
-
+data.list.slice(0,5).forEach(item=>{
 const time = item.dt_txt.split(" ")[1].slice(0,5);
-
 const temp = Math.round(item.main.temp);
-
 const icon = item.weather[0].icon;
 
-
 const card = document.createElement("div");
-
 card.classList.add("forecast-card");
 
-
-card.innerHTML = `
-
+card.innerHTML=`
 <p>${time}</p>
-
 <img src="https://openweathermap.org/img/wn/${icon}@2x.png">
-
-<p>${temp}°C</p>
-
+<p>${temp}${getUnitSymbol()}</p>
 `;
 
 forecastContainer.appendChild(card);
-
 });
-
 }
