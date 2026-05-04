@@ -6,10 +6,15 @@ const forecastContainer = document.getElementById("hourly-forecast");
 const unitBtn = document.getElementById("unit-toggle");
 const themeBtn = document.getElementById("theme-toggle");
 
+/* ===== API KEY FALLBACK ===== */
+const LOCAL_API_KEY = "PASTE_YOUR_API_KEY_HERE";
+const FINAL_API_KEY = typeof API_KEY !== "undefined" ? API_KEY : LOCAL_API_KEY;
+
+/* ===== STATE ===== */
 let currentUnit = localStorage.getItem("unit") || "metric";
 let lastCity = "";
 
-/* Helpers */
+/* ===== HELPERS ===== */
 function getUnitSymbol(){
 return currentUnit === "metric" ? "°C" : "°F";
 }
@@ -18,10 +23,9 @@ function updateUnitBtn(){
 unitBtn.textContent =
 currentUnit === "metric" ? "Switch to °F" : "Switch to °C";
 }
-
 updateUnitBtn();
 
-/* Toast */
+/* ===== TOAST ===== */
 function showToast(message){
 const toast = document.getElementById("toast");
 toast.textContent = message;
@@ -29,7 +33,7 @@ toast.className = "show";
 setTimeout(()=>toast.className="",2500);
 }
 
-/* Theme */
+/* ===== DARK MODE ===== */
 if(localStorage.getItem("theme")==="dark"){
 document.body.classList.add("dark");
 themeBtn.textContent="☀️ Light Mode";
@@ -46,7 +50,7 @@ themeBtn.textContent="🌙 Dark Mode";
 }
 });
 
-/* Unit toggle */
+/* ===== UNIT TOGGLE ===== */
 unitBtn.addEventListener("click",()=>{
 currentUnit = currentUnit==="metric" ? "imperial" : "metric";
 localStorage.setItem("unit",currentUnit);
@@ -58,27 +62,34 @@ getHourlyForecast(lastCity);
 }
 });
 
-/* Search */
+/* ===== SEARCH ===== */
 searchBtn.addEventListener("click",()=>{
 const city = cityInput.value.trim();
+
 if(!city){
 showToast("Enter city name");
 return;
 }
+
 lastCity = city;
 getWeather(city);
 getHourlyForecast(city);
 });
 
-/* Weather */
+/* ===== WEATHER ===== */
 async function getWeather(city){
 try{
 const res = await fetch(
-`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=${currentUnit}`
+`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${FINAL_API_KEY}&units=${currentUnit}`
 );
 const data = await res.json();
 
-if(data.cod!==200){
+if(data.cod == 401){
+showToast("Use valid API key");
+return;
+}
+
+if(data.cod !== 200){
 showToast("City not found");
 return;
 }
@@ -97,15 +108,20 @@ showToast("Network error");
 }
 }
 
-/* Forecast */
+/* ===== FORECAST ===== */
 async function getHourlyForecast(city){
 forecastContainer.innerHTML="";
 
 try{
 const res = await fetch(
-`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=${currentUnit}`
+`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${FINAL_API_KEY}&units=${currentUnit}`
 );
 const data = await res.json();
+
+if(data.cod == 401){
+showToast("Use valid API key");
+return;
+}
 
 data.list.slice(0,5).forEach(item=>{
 const time = item.dt_txt.split(" ")[1].slice(0,5);
@@ -129,11 +145,12 @@ showToast("Forecast failed");
 }
 }
 
-/* Location */
+/* ===== LOCATION ===== */
 locationBtn.addEventListener("click",()=>{
 navigator.geolocation.getCurrentPosition(pos=>{
 const lat = pos.coords.latitude;
 const lon = pos.coords.longitude;
+
 getWeatherByCoords(lat,lon);
 getForecastByCoords(lat,lon);
 });
@@ -141,9 +158,14 @@ getForecastByCoords(lat,lon);
 
 async function getWeatherByCoords(lat,lon){
 const res = await fetch(
-`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${currentUnit}`
+`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${FINAL_API_KEY}&units=${currentUnit}`
 );
 const data = await res.json();
+
+if(data.cod == 401){
+showToast("Use valid API key");
+return;
+}
 
 const icon = data.weather[0].icon;
 
@@ -159,9 +181,14 @@ async function getForecastByCoords(lat,lon){
 forecastContainer.innerHTML="";
 
 const res = await fetch(
-`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${currentUnit}`
+`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${FINAL_API_KEY}&units=${currentUnit}`
 );
 const data = await res.json();
+
+if(data.cod == 401){
+showToast("Use valid API key");
+return;
+}
 
 data.list.slice(0,5).forEach(item=>{
 const time = item.dt_txt.split(" ")[1].slice(0,5);
