@@ -10,6 +10,9 @@ const themeBtn = document.getElementById("theme-toggle");
 const LOCAL_API_KEY = "PASTE_YOUR_API_KEY_HERE";
 const FINAL_API_KEY = typeof API_KEY !== "undefined" ? API_KEY : LOCAL_API_KEY;
 
+const suggestionsBox = document.getElementById("suggestions-box");
+const historyBox = document.getElementById("history-box");
+
 /* ===== STATE ===== */
 let currentUnit = localStorage.getItem("unit") || "metric";
 let lastCity = "";
@@ -62,7 +65,19 @@ getHourlyForecast(lastCity);
 }
 });
 
-/* ===== SEARCH ===== */
+/* ===== CENTRAL SEARCH FUNCTION (NEW FIX) ===== */
+function handleSearch(city){
+
+lastCity = city;
+
+getWeather(city);
+getHourlyForecast(city);
+
+saveToHistory(city);
+
+}
+
+/* ===== SEARCH BUTTON ===== */
 searchBtn.addEventListener("click",()=>{
 const city = cityInput.value.trim();
 
@@ -71,9 +86,8 @@ showToast("Enter city name");
 return;
 }
 
-lastCity = city;
-getWeather(city);
-getHourlyForecast(city);
+handleSearch(city);
+
 });
 
 /* ===== WEATHER ===== */
@@ -207,3 +221,116 @@ card.innerHTML=`
 forecastContainer.appendChild(card);
 });
 }
+
+/* ===== AUTOSUGGEST ===== */
+cityInput.addEventListener("input", async () => {
+
+const query = cityInput.value.trim();
+
+historyBox.style.display = "none";
+
+if(!query){
+suggestionsBox.style.display = "none";
+showHistory();
+return;
+}
+
+try{
+const res = await fetch(
+`https://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${FINAL_API_KEY}`
+);
+
+const data = await res.json();
+
+suggestionsBox.innerHTML = "";
+
+data.forEach(place => {
+
+const item = document.createElement("div");
+
+item.textContent = `${place.name}, ${place.country}`;
+
+item.addEventListener("click", () => {
+
+cityInput.value = place.name;
+suggestionsBox.style.display = "none";
+
+handleSearch(place.name);
+
+});
+
+suggestionsBox.appendChild(item);
+
+});
+
+suggestionsBox.style.display = "block";
+
+}catch{
+showToast("Suggestion error");
+}
+
+});
+
+/* ===== HISTORY ===== */
+function saveToHistory(city){
+
+let history = JSON.parse(localStorage.getItem("history")) || [];
+
+history = history.filter(c => c.toLowerCase() !== city.toLowerCase());
+
+history.unshift(city);
+
+if(history.length > 5) history.pop();
+
+localStorage.setItem("history", JSON.stringify(history));
+
+}
+
+function showHistory(){
+
+let history = JSON.parse(localStorage.getItem("history")) || [];
+
+if(history.length === 0) return;
+
+historyBox.innerHTML = "";
+
+history.forEach(city => {
+
+const item = document.createElement("div");
+
+item.textContent = city;
+
+item.addEventListener("click", () => {
+
+cityInput.value = city;
+historyBox.style.display = "none";
+
+handleSearch(city);
+
+});
+
+historyBox.appendChild(item);
+
+});
+
+historyBox.style.display = "block";
+}
+
+/* ===== SHOW HISTORY ON FOCUS ===== */
+cityInput.addEventListener("focus", () => {
+
+if(!cityInput.value){
+showHistory();
+}
+
+});
+
+/* ===== CLICK OUTSIDE CLOSE ===== */
+document.addEventListener("click", (e) => {
+
+if(!cityInput.contains(e.target)){
+suggestionsBox.style.display = "none";
+historyBox.style.display = "none";
+}
+
+});
