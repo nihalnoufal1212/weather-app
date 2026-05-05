@@ -100,3 +100,27 @@ color: white;
 body.dark .forecast-card {
 background: rgba(0,0,0,0.4);
 }
+/* DROPDOWN */
+
+.dropdown {
+position: absolute;
+left: 50%;
+transform: translateX(-50%);
+width: 220px;
+background: white;
+color: black;
+border-radius: 8px;
+margin-top: 5px;
+z-index: 1000;
+display: none;
+}
+
+.dropdown div {
+padding: 10px;
+cursor: pointer;
+border-bottom: 1px solid #eee;
+}
+
+.dropdown div:hover {
+background: #f0f0f0;
+}
