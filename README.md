@@ -1,6 +1,6 @@
 # 🌦️ Weather Dashboard (Vanilla JavaScript)
 
-A modern **Weather Dashboard Web App** built using **HTML, CSS, and Vanilla JavaScript**, featuring real-time weather data, hourly forecast, theme switching, and unit conversion.
+A modern **Weather Dashboard Web App** built using **HTML, CSS, and Vanilla JavaScript**, featuring real-time weather, hourly forecasts, autosuggest search, history tracking, and UI customization.
 
 This project is being developed step-by-step into a **portfolio-level frontend application**.
 
@@ -10,8 +10,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 
 ### 🌍 Current Weather
 
-* Search weather by city
-* Get weather using current location (Geolocation API)
+* Search weather by city name
 * Displays:
 
   * Temperature
@@ -21,15 +20,38 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 
 ---
 
+### 📍 Location Weather
+
+* Fetch weather using browser **Geolocation API**
+* Displays current location weather instantly
+
+---
+
 ### ⏱️ Hourly Forecast ⭐
 
-* Shows next **5 forecast time slots**
+* Shows next **5 upcoming forecast time slots**
 * Displays:
 
   * Time
   * Temperature
   * Weather icon
 * Uses OpenWeather **forecast API**
+
+---
+
+### 🔎 Autosuggest Search (NEW)
+
+* Shows city suggestions while typing
+* Uses OpenWeather **Geolocation API**
+* Click suggestion to auto-search instantly
+
+---
+
+### 🕘 Search History Dropdown (NEW)
+
+* Stores recent searches using **localStorage**
+* Shows when input is empty
+* Click any previous search to reuse instantly
 
 ---
 
@@ -45,9 +67,9 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 
 ### 🌙 Dark Mode Toggle
 
-* Toggle between light and dark themes
+* Switch between light and dark themes
 * Automatically saves user preference
-* Persistent after page reload
+* Persistent after reload
 
 ---
 
@@ -59,20 +81,13 @@ Custom popup alerts for:
 * Invalid API key
 * City not found
 * Network errors
-
----
-
-### 📍 Location Weather
-
-* Uses browser **Geolocation API**
-* Fetches weather based on user location
+* Suggestion errors
 
 ---
 
 ### ⚡ Smart API Handling
 
-* Uses **fallback API key system**
-* Supports:
+* Supports dual API key system:
 
   * `apikey.js` (secure local file)
   * fallback key inside `script.js`
@@ -96,13 +111,13 @@ Custom popup alerts for:
 
 ## 📦 Project Structure
 
-```
+```id="6r8k7a"
 weather-dashboard/
 │
 ├── index.html
 ├── style.css
 ├── script.js
-├── apikey.js   (ignored in GitHub)
+├── apikey.js   (ignored from GitHub)
 ├── .gitignore
 └── README.md
 ```
@@ -118,9 +133,9 @@ The API key is **not exposed on GitHub**.
 * Stored in `apikey.js`
 * Ignored using `.gitignore`
 
-### Optional fallback:
+### Development fallback:
 
-A local API key is used inside `script.js` for development.
+A backup API key is used inside `script.js` to avoid breaking the app locally.
 
 ---
 
@@ -134,31 +149,35 @@ https://api.openweathermap.org/data/2.5/weather
 
 https://api.openweathermap.org/data/2.5/forecast
 
+### Geolocation (Autosuggest):
+
+https://api.openweathermap.org/geo/1.0/direct
+
 ---
 
 ## ▶️ How to Run Locally
 
 1. Clone the repository
 
-```
+```id="0ys4kp"
 git clone <your-repo-link>
 ```
 
-2. Create a file:
+2. Create file:
 
-```
+```id="x8sjb2"
 apikey.js
 ```
 
 3. Add your API key:
 
-```
+```id="k9l2da"
 const API_KEY = "YOUR_API_KEY_HERE";
 ```
 
 4. Open:
 
-```
+```id="pd8s0r"
 index.html
 ```
 
@@ -168,24 +187,26 @@ index.html
 
 This project demonstrates:
 
-* Working with real-world APIs
-* Handling asynchronous data
-* Building dynamic UI using DOM
-* Managing application state
-* Creating reusable UI components
-* Implementing theme persistence
-* Secure handling of API keys in frontend projects
+* API integration and data handling
+* Async JavaScript programming
 * Time-series forecast processing
+* Building dynamic UI using DOM
+* Implementing search systems (autosuggest + history)
+* UI state management with localStorage
+* Theme persistence (dark mode)
+* Secure API handling in frontend projects
+* Building scalable frontend architecture
 
 ---
 
 ## 🔮 Future Improvements
 
-* Search history dropdown (clickable)
-* Weather-based background animations
+* Improved dropdown UI (animations + styling)
+* Weather-based dynamic background
+* Keyboard navigation (arrow keys for suggestions)
 * Deploy on Netlify / Vercel
 * Add screenshots to README
-* Convert project to React
+* Convert to React
 
 ---
 
