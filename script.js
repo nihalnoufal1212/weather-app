@@ -115,6 +115,7 @@ weatherCard.innerHTML=`
 <img src="https://openweathermap.org/img/wn/${icon}@2x.png">
 <h1>${Math.round(data.main.temp)}${getUnitSymbol()}</h1>
 <p>${data.weather[0].description}</p>
+<p>Feels Like: ${Math.round(data.main.feels_like)}${getUnitSymbol()}</p>
 `;
 
 }catch{
