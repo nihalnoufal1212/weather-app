@@ -7,7 +7,12 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 ---
 
 ## 🚀 Features
-
+Displays:
+- Temperature
+- Feels-like temperature
+- Weather condition
+- Weather icon
+- City name
 ### 🌍 Current Weather
 
 * Search weather by city name
@@ -17,6 +22,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
   * Weather condition
   * Weather icon
   * City name
+  - Feels-like temperature display
 
 ---
 
