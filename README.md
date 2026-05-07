@@ -10,6 +10,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 Displays:
 - Temperature
 - Feels-like temperature
+- Wind speed
 - Weather condition
 - Weather icon
 - City name
@@ -23,6 +24,7 @@ Displays:
   * Weather icon
   * City name
   - Feels-like temperature display
+  - Wind speed display
 
 ---
 
