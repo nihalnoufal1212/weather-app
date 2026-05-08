@@ -25,6 +25,7 @@ Displays:
   * City name
   - Feels-like temperature display
   - Wind speed display
+  - Humidity display
 
 ---
 
