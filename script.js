@@ -117,6 +117,7 @@ weatherCard.innerHTML=`
 <p>${data.weather[0].description}</p>
 <p>Feels Like: ${Math.round(data.main.feels_like)}${getUnitSymbol()}</p>
 <p>Wind Speed: ${data.wind.speed} m/s</p>
+<p>Humidity: ${data.main.humidity}%</p>
 `;
 
 }catch{
