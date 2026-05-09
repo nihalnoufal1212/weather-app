@@ -26,6 +26,7 @@ Displays:
   - Feels-like temperature display
   - Wind speed display
   - Humidity display
+  - Visibility display
 
 ---
 
