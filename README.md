@@ -27,6 +27,7 @@ Displays:
   - Wind speed display
   - Humidity display
   - Visibility display
+  - Sunrise time display
 
 ---
 
