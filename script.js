@@ -123,6 +123,7 @@ weatherCard.innerHTML=`
 <p>Wind Speed: ${data.wind.speed} m/s</p>
 <p>Humidity: ${data.main.humidity}%</p>
 <p>Visibility: ${data.visibility / 1000} km</p>
+<p>🌅 Sunrise: ${sunrise}</p>
 `;
 
 }catch{
