@@ -109,6 +109,10 @@ return;
 }
 
 const icon = data.weather[0].icon;
+const sunrise = new Date(data.sys.sunrise * 1000).toLocaleTimeString([], {
+hour: '2-digit',
+minute: '2-digit'
+});
 
 weatherCard.innerHTML=`
 <h2>${data.name}</h2>
