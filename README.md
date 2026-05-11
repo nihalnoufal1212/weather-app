@@ -28,6 +28,7 @@ Displays:
   - Humidity display
   - Visibility display
   - Sunrise time display
+  - Sunset time display
 
 ---
 
