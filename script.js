@@ -113,6 +113,10 @@ const sunrise = new Date(data.sys.sunrise * 1000).toLocaleTimeString([], {
 hour: '2-digit',
 minute: '2-digit'
 });
+const sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString([], {
+hour: '2-digit',
+minute: '2-digit'
+});
 
 weatherCard.innerHTML=`
 <h2>${data.name}</h2>
@@ -124,6 +128,7 @@ weatherCard.innerHTML=`
 <p>Humidity: ${data.main.humidity}%</p>
 <p>Visibility: ${data.visibility / 1000} km</p>
 <p>🌅 Sunrise: ${sunrise}</p>
+
 `;
 
 }catch{
