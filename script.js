@@ -225,6 +225,7 @@ weatherCard.innerHTML=`
 <p>Visibility: ${data.visibility / 1000} km</p>
 <p>🌅 Sunrise: ${sunrise}</p>
 <p>🌇 Sunset: ${sunset}</p>
+<p>🕒 Updated: ${updatedTime}</p>
 `;
 }
 
