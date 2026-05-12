@@ -19,10 +19,10 @@ Displays:
 * Search weather by city name
 * Displays:
 
-  * Temperature
-  * Weather condition
-  * Weather icon
-  * City name
+  -Temperature
+  - Weather condition
+  - Weather icon
+  - City name
   - Feels-like temperature display
   - Wind speed display
   - Humidity display
