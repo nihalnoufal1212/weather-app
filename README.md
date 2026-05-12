@@ -29,6 +29,7 @@ Displays:
   - Visibility display
   - Sunrise time display
   - Sunset time display
+  - Last updated time display
 
 ---
 
