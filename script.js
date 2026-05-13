@@ -89,6 +89,22 @@ return;
 handleSearch(city);
 
 });
+cityInput.addEventListener("keydown", (e) => {
+
+if(e.key === "Enter"){
+
+const city = cityInput.value.trim();
+
+if(!city){
+showToast("Enter city name");
+return;
+}
+
+handleSearch(city);
+
+}
+
+});
 
 /* ===== WEATHER ===== */
 async function getWeather(city){
