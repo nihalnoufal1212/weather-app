@@ -57,6 +57,7 @@ Displays:
 * Shows city suggestions while typing
 * Uses OpenWeather **Geolocation API**
 * Click suggestion to auto-search instantly
+- Press Enter to search instantly
 
 ---
 
