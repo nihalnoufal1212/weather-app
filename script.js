@@ -74,7 +74,8 @@ getWeather(city);
 getHourlyForecast(city);
 
 saveToHistory(city);
-
+suggestionsBox.style.display = "none";
+historyBox.style.display = "none";
 }
 
 /* ===== SEARCH BUTTON ===== */
