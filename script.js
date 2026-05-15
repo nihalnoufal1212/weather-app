@@ -299,6 +299,16 @@ const data = await res.json();
 
 suggestionsBox.innerHTML = "";
 
+if(data.length === 0){
+
+suggestionsBox.innerHTML = "<div>No suggestions found</div>";
+
+suggestionsBox.style.display = "block";
+
+return;
+
+}
+
 data.forEach(place => {
 
 const item = document.createElement("div");
