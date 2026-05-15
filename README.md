@@ -59,6 +59,7 @@ Displays:
 * Click suggestion to auto-search instantly
 - Press Enter to search instantly
 - Suggestions automatically close after search
+- Displays message when no suggestions are found
 
 ---
 
