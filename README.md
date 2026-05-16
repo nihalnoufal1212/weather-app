@@ -60,6 +60,7 @@ Displays:
 - Press Enter to search instantly
 - Suggestions automatically close after search
 - Displays message when no suggestions are found
+- Clears input after successful search
 
 ---
 
