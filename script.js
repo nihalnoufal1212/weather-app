@@ -321,6 +321,7 @@ cityInput.value = place.name;
 suggestionsBox.style.display = "none";
 
 handleSearch(place.name);
+cityInput.value = "";
 
 });
 
