@@ -400,3 +400,8 @@ historyBox.style.display = "none";
 }
 
 });
+window.addEventListener("load", () => {
+
+cityInput.focus();
+
+});
