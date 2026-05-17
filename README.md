@@ -61,6 +61,7 @@ Displays:
 - Suggestions automatically close after search
 - Displays message when no suggestions are found
 - Clears input after successful search
+- Search input automatically focused on page load
 
 ---
 
