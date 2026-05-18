@@ -339,7 +339,9 @@ showToast("Suggestion error");
 
 /* ===== HISTORY ===== */
 function saveToHistory(city){
-
+city = city
+.toLowerCase()
+.replace(/\b\w/g, letter => letter.toUpperCase());
 let history = JSON.parse(localStorage.getItem("history")) || [];
 
 history = history.filter(c => c.toLowerCase() !== city.toLowerCase());
