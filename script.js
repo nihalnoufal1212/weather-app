@@ -5,6 +5,7 @@ const weatherCard = document.getElementById("weather-card");
 const forecastContainer = document.getElementById("hourly-forecast");
 const unitBtn = document.getElementById("unit-toggle");
 const themeBtn = document.getElementById("theme-toggle");
+const clearHistoryBtn = document.getElementById("clear-history-btn");
 
 /* ===== API KEY FALLBACK ===== */
 const LOCAL_API_KEY = "PASTE_YOUR_API_KEY_HERE";
