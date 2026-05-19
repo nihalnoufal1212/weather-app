@@ -71,6 +71,7 @@ Displays:
 * Shows when input is empty
 * Click any previous search to reuse instantly
 - Automatically formats city names for cleaner history display
+- Clear search history button
 
 ---
 
