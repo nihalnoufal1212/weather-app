@@ -393,6 +393,17 @@ showHistory();
 }
 
 });
+clearHistoryBtn.addEventListener("click",()=>{
+
+localStorage.removeItem("history");
+
+historyBox.innerHTML = "";
+
+historyBox.style.display = "none";
+
+showToast("History cleared");
+
+});
 
 /* ===== CLICK OUTSIDE CLOSE ===== */
 document.addEventListener("click", (e) => {
