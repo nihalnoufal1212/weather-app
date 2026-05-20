@@ -62,6 +62,7 @@ Displays:
 - Displays message when no suggestions are found
 - Clears input after successful search
 - Search input automatically focused on page load
+- Dynamic placeholder text on input focus
 
 ---
 
