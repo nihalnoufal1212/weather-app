@@ -404,6 +404,17 @@ historyBox.style.display = "none";
 showToast("History cleared");
 
 });
+cityInput.addEventListener("focus",()=>{
+
+cityInput.placeholder = "Try: London, Mumbai, Tokyo...";
+
+});
+
+cityInput.addEventListener("blur",()=>{
+
+cityInput.placeholder = "Enter city name";
+
+});
 
 /* ===== CLICK OUTSIDE CLOSE ===== */
 document.addEventListener("click", (e) => {
