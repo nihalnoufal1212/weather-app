@@ -63,6 +63,7 @@ Displays:
 - Clears input after successful search
 - Search input automatically focused on page load
 - Dynamic placeholder text on input focus
+- Auto-selects search text on input click
 
 ---
 
