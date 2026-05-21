@@ -415,6 +415,11 @@ cityInput.addEventListener("blur",()=>{
 cityInput.placeholder = "Enter city name";
 
 });
+cityInput.addEventListener("click",()=>{
+
+cityInput.select();
+
+});
 
 /* ===== CLICK OUTSIDE CLOSE ===== */
 document.addEventListener("click", (e) => {
