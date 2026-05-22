@@ -69,8 +69,9 @@ getHourlyForecast(lastCity);
 /* ===== CENTRAL SEARCH FUNCTION (NEW FIX) ===== */
 function handleSearch(city){
 
-lastCity = city;
+city = city.trim();
 
+lastCity = city;
 getWeather(city);
 getHourlyForecast(city);
 
