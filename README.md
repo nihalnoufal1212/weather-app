@@ -65,6 +65,7 @@ Displays:
 - Dynamic placeholder text on input focus
 - Auto-selects search text on input click
 - Automatically removes extra spaces from searches
+- Automatically closes dropdowns when input loses focus
 
 ---
 
