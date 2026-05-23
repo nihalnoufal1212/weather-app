@@ -37,6 +37,7 @@ Displays:
 
 * Fetch weather using browser **Geolocation API**
 * Displays current location weather instantly
+- Tooltip hint for location button
 
 ---
 
