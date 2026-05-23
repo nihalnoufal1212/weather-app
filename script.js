@@ -415,6 +415,9 @@ cityInput.addEventListener("blur",()=>{
 
 cityInput.placeholder = "Enter city name";
 
+historyBox.style.display = "none";
+suggestionsBox.style.display = "none";
+
 });
 cityInput.addEventListener("click",()=>{
 
