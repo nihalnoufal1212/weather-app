@@ -30,6 +30,7 @@ Displays:
   - Sunrise time display
   - Sunset time display
   - Last updated time display
+  - Tooltip hint for search button
 
 ---
 
