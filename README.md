@@ -88,6 +88,7 @@ Displays:
   * Celsius (°C)
   * Fahrenheit (°F)
 * Preference saved using **localStorage**
+- Tooltip hint for temperature toggle button
 
 ---
 
