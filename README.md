@@ -97,6 +97,7 @@ Displays:
 * Switch between light and dark themes
 * Automatically saves user preference
 * Persistent after reload
+- Animated gradient background
 
 ---
 
