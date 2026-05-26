@@ -1,11 +1,22 @@
 body {
 font-family: Arial, sans-serif;
-background: linear-gradient(135deg,#4facfe,#00f2fe);
+
+background: linear-gradient(
+-45deg,
+#4facfe,
+#00f2fe,
+#43e97b,
+#38f9d7
+);
+
+background-size: 400% 400%;
+
+animation: gradientMove 15s ease infinite;
+
 color: white;
 text-align: center;
 margin: 0;
 }
-
 .container {
 margin-top: 50px;
 }
