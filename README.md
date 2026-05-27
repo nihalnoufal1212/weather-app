@@ -31,6 +31,7 @@ Displays:
   - Sunset time display
   - Last updated time display
   - Tooltip hint for search button
+  - Glassmorphism weather card styling
 
 ---
 
