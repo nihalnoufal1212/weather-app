@@ -33,6 +33,7 @@ Displays:
   - Tooltip hint for search button
   - Glassmorphism weather card styling
   - Hover animation for weather card
+  - Smooth fade-in animation for weather card
 
 ---
 
