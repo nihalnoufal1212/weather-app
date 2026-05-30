@@ -100,7 +100,11 @@ min-width: 80px;
 
 transition: transform 0.3s ease;
 }
+.forecast-card:hover {
 
+transform: scale(1.05);
+
+}
 .forecast-card img {
 width: 40px;
 }
