@@ -55,6 +55,7 @@ Displays:
   * Weather icon
 * Uses OpenWeather **forecast API**
 - Hover animation for forecast cards
+- Interactive pointer cursor for forecast cards
 
 ---
 
