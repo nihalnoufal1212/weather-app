@@ -103,6 +103,7 @@ Displays:
 * Automatically saves user preference
 * Persistent after reload
 - Animated gradient background
+- Smooth background transition during theme changes
 
 ---
 
