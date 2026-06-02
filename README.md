@@ -7,33 +7,27 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 ---
 
 ## 🚀 Features
-Displays:
-- Temperature
-- Feels-like temperature
-- Wind speed
-- Weather condition
-- Weather icon
-- City name
+
 ### 🌍 Current Weather
 
 * Search weather by city name
 * Displays:
 
-  -Temperature
-  - Weather condition
-  - Weather icon
-  - City name
-  - Feels-like temperature display
-  - Wind speed display
-  - Humidity display
-  - Visibility display
-  - Sunrise time display
-  - Sunset time display
-  - Last updated time display
-  - Tooltip hint for search button
-  - Glassmorphism weather card styling
-  - Hover animation for weather card
-  - Smooth fade-in animation for weather card
+  * Temperature
+  * Feels-like temperature
+  * Wind speed
+  * Humidity
+  * Visibility
+  * Weather condition
+  * Weather icon
+  * City name
+* Sunrise time display
+* Sunset time display
+* Last updated time display
+* Tooltip hint for search button
+* Glassmorphism weather card styling
+* Hover animation for weather card
+* Smooth fade-in animation for weather card
 
 ---
 
@@ -41,7 +35,7 @@ Displays:
 
 * Fetch weather using browser **Geolocation API**
 * Displays current location weather instantly
-- Tooltip hint for location button
+* Tooltip hint for location button
 
 ---
 
@@ -54,35 +48,35 @@ Displays:
   * Temperature
   * Weather icon
 * Uses OpenWeather **forecast API**
-- Hover animation for forecast cards
-- Interactive pointer cursor for forecast cards
+* Hover animation for forecast cards
+* Interactive pointer cursor for forecast cards
 
 ---
 
-### 🔎 Autosuggest Search (NEW)
+### 🔎 Autosuggest Search
 
 * Shows city suggestions while typing
 * Uses OpenWeather **Geolocation API**
 * Click suggestion to auto-search instantly
-- Press Enter to search instantly
-- Suggestions automatically close after search
-- Displays message when no suggestions are found
-- Clears input after successful search
-- Search input automatically focused on page load
-- Dynamic placeholder text on input focus
-- Auto-selects search text on input click
-- Automatically removes extra spaces from searches
-- Automatically closes dropdowns when input loses focus
+* Press Enter to search instantly
+* Suggestions automatically close after search
+* Displays message when no suggestions are found
+* Clears input after successful search
+* Search input automatically focused on page load
+* Dynamic placeholder text on input focus
+* Auto-selects search text on input click
+* Automatically removes extra spaces from searches
+* Automatically closes dropdowns when input loses focus
 
 ---
 
-### 🕘 Search History Dropdown (NEW)
+### 🕘 Search History Dropdown
 
 * Stores recent searches using **localStorage**
 * Shows when input is empty
-* Click any previous search to reuse instantly
-- Automatically formats city names for cleaner history display
-- Clear search history button
+* Click previous searches to reuse instantly
+* Automatically formats city names for cleaner history display
+* Clear search history button
 
 ---
 
@@ -93,7 +87,7 @@ Displays:
   * Celsius (°C)
   * Fahrenheit (°F)
 * Preference saved using **localStorage**
-- Tooltip hint for temperature toggle button
+* Tooltip hint for temperature toggle button
 
 ---
 
@@ -102,8 +96,8 @@ Displays:
 * Switch between light and dark themes
 * Automatically saves user preference
 * Persistent after reload
-- Animated gradient background
-- Smooth background transition during theme changes
+* Animated gradient background
+* Smooth background transition during theme changes
 
 ---
 
@@ -124,7 +118,7 @@ Custom popup alerts for:
 * Supports dual API key system:
 
   * `apikey.js` (secure local file)
-  * fallback key inside `script.js`
+  * Fallback key inside `script.js`
 * Prevents app from breaking during development
 
 ---
@@ -145,7 +139,7 @@ Custom popup alerts for:
 
 ## 📦 Project Structure
 
-```id="6r8k7a"
+```plaintext
 weather-dashboard/
 │
 ├── index.html
@@ -162,28 +156,28 @@ weather-dashboard/
 
 The API key is **not exposed on GitHub**.
 
-### Method used:
+### Method Used
 
 * Stored in `apikey.js`
 * Ignored using `.gitignore`
 
-### Development fallback:
+### Development Fallback
 
-A backup API key is used inside `script.js` to avoid breaking the app locally.
+* A backup API key is used inside `script.js` to avoid breaking the app locally
 
 ---
 
 ## 📡 API Endpoints
 
-### Current Weather:
+### Current Weather
 
 https://api.openweathermap.org/data/2.5/weather
 
-### Forecast Data:
+### Forecast Data
 
 https://api.openweathermap.org/data/2.5/forecast
 
-### Geolocation (Autosuggest):
+### Geolocation (Autosuggest)
 
 https://api.openweathermap.org/geo/1.0/direct
 
@@ -193,25 +187,25 @@ https://api.openweathermap.org/geo/1.0/direct
 
 1. Clone the repository
 
-```id="0ys4kp"
+```bash
 git clone <your-repo-link>
 ```
 
 2. Create file:
 
-```id="x8sjb2"
+```js
 apikey.js
 ```
 
 3. Add your API key:
 
-```id="k9l2da"
+```js
 const API_KEY = "YOUR_API_KEY_HERE";
 ```
 
 4. Open:
 
-```id="pd8s0r"
+```plaintext
 index.html
 ```
 
@@ -240,7 +234,7 @@ This project demonstrates:
 * Keyboard navigation (arrow keys for suggestions)
 * Deploy on Netlify / Vercel
 * Add screenshots to README
-* Convert to React
+* Convert project to React
 
 ---
 
