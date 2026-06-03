@@ -98,6 +98,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 * Persistent after reload
 * Animated gradient background
 * Smooth background transition during theme changes
+- Button hover shadow effect
 
 ---
 
