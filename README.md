@@ -50,6 +50,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 * Uses OpenWeather **forecast API**
 * Hover animation for forecast cards
 * Interactive pointer cursor for forecast cards
+- Enhanced smooth hover animation for forecast cards
 
 ---
 
