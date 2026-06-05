@@ -68,6 +68,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 * Auto-selects search text on input click
 * Automatically removes extra spaces from searches
 * Automatically closes dropdowns when input loses focus
+- Subtle focus animation for search input
 
 ---
 
