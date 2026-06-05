@@ -27,6 +27,8 @@ width: 220px;
 border-radius: 8px;
 border: none;
 outline: none;
+
+transition: transform 0.2s ease;
 }
 
 .button-group {
