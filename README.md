@@ -69,6 +69,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 * Automatically removes extra spaces from searches
 * Automatically closes dropdowns when input loses focus
 - Subtle focus animation for search input
+- Focus glow effect for search input
 
 ---
 
