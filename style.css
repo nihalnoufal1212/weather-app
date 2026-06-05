@@ -30,7 +30,11 @@ outline: none;
 
 transition: transform 0.2s ease;
 }
+input:focus {
 
+transform: scale(1.03);
+
+}
 .button-group {
 margin-top: 10px;
 }
