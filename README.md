@@ -51,6 +51,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 * Hover animation for forecast cards
 * Interactive pointer cursor for forecast cards
 - Enhanced smooth hover animation for forecast cards
+- Smooth fade-in animation for forecast cards
 
 ---
 
