@@ -116,6 +116,7 @@ min-width: 80px;
 
 transition: all 0.3s ease;
 cursor: pointer;
+animation: forecastFadeIn 0.4s ease;
 }
 .forecast-card:hover {
 
