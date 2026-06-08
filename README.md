@@ -28,6 +28,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 * Glassmorphism weather card styling
 * Hover animation for weather card
 * Smooth fade-in animation for weather card
+- Maximum width constraint for cleaner card layout
 
 ---
 
