@@ -73,6 +73,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 * Automatically closes dropdowns when input loses focus
 - Subtle focus animation for search input
 - Focus glow effect for search input
+- Glassmorphism styling for suggestion and history dropdowns
 
 ---
 
