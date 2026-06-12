@@ -244,6 +244,7 @@ display: none;
 .dropdown div {
 padding: 10px;
 cursor: pointer;
+transition: background 0.2s ease;
 border-bottom: 1px solid #eee;
 }
 
