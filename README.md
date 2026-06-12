@@ -75,6 +75,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Focus glow effect for search input
 - Glassmorphism styling for suggestion and history dropdowns
 - Smooth hover transition for dropdown items
+- Pointer cursor for suggestion and history items
 
 ---
 
