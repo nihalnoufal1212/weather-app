@@ -245,6 +245,7 @@ display: none;
 padding: 10px;
 cursor: pointer;
 transition: background 0.2s ease;
+padding: 10px;
 border-bottom: 1px solid #eee;
 }
 
