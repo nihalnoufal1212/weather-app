@@ -101,7 +101,8 @@ margin-top: 30px;
 #hourly-forecast {
 display: flex;
 justify-content: center;
-gap: 15px;
+
+gap: 10px;
 overflow-x: auto;
 padding: 10px;
 }
