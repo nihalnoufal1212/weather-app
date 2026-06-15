@@ -55,6 +55,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Enhanced smooth hover animation for forecast cards
 - Smooth fade-in animation for forecast cards
 - Improved spacing between forecast cards
+- Smooth horizontal scrolling for forecast cards
 
 ---
 
