@@ -128,6 +128,10 @@ transform: scale(1.08);
 
 }
 .forecast-card img {
+
+user-select: none;
+
+-webkit-user-drag: none;
 width: 40px;
 }
 
