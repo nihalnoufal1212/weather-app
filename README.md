@@ -57,6 +57,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Improved spacing between forecast cards
 - Smooth horizontal scrolling for forecast cards
 - Prevented accidental dragging of forecast weather icons
+- Center-aligned forecast card content
 
 ---
 
