@@ -59,6 +59,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Prevented accidental dragging of forecast weather icons
 - Center-aligned forecast card content
 - Subtle glass-style border for forecast cards
+- Hover shadow effect for forecast cards
 
 ---
 
