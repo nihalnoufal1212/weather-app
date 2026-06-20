@@ -60,6 +60,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Center-aligned forecast card content
 - Subtle glass-style border for forecast cards
 - Hover shadow effect for forecast cards
+- Rounded weather icons in forecast cards
 
 ---
 
