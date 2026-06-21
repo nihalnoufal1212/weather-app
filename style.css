@@ -233,6 +233,17 @@ transform: translateY(0);
 }
 
 }
+@media (max-width: 600px) {
+
+#weather-card {
+
+width: 90%;
+
+max-width: none;
+
+}
+
+}
 /* DROPDOWN */
 
 .dropdown {
