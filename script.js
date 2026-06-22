@@ -147,6 +147,8 @@ weatherCard.innerHTML=`
 <h1>${Math.round(data.main.temp)}${getUnitSymbol()}</h1>
 <p>${data.weather[0].description}</p>
 <p>Feels Like: ${Math.round(data.main.feels_like)}${getUnitSymbol()}</p>
+<p>Min: ${Math.round(data.main.temp_min)}${getUnitSymbol()}</p>
+<p>Max: ${Math.round(data.main.temp_max)}${getUnitSymbol()}</p>
 <p>Wind Speed: ${data.wind.speed} m/s</p>
 <p>Humidity: ${data.main.humidity}%</p>
 <p>Visibility: ${data.visibility / 1000} km</p>
@@ -239,6 +241,8 @@ weatherCard.innerHTML=`
 <h1>${Math.round(data.main.temp)}${getUnitSymbol()}</h1>
 <p>${data.weather[0].description}</p>
 <p>Feels Like: ${Math.round(data.main.feels_like)}${getUnitSymbol()}</p>
+<p>Min: ${Math.round(data.main.temp_min)}${getUnitSymbol()}</p>
+<p>Max: ${Math.round(data.main.temp_max)}${getUnitSymbol()}</p>
 <p>Wind Speed: ${data.wind.speed} m/s</p>
 <p>Humidity: ${data.main.humidity}%</p>
 <p>Visibility: ${data.visibility / 1000} km</p>
