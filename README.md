@@ -31,6 +31,8 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Maximum width constraint for cleaner card layout
 - Subtle glass-style border for weather card
 - Improved mobile responsiveness for weather card
+- Minimum temperature display
+- Maximum temperature display
 
 ---
 
