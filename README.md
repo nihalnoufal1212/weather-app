@@ -33,6 +33,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Improved mobile responsiveness for weather card
 - Minimum temperature display
 - Maximum temperature display
+- Atmospheric pressure display
 
 ---
 
