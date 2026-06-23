@@ -151,6 +151,7 @@ weatherCard.innerHTML=`
 <p>Max: ${Math.round(data.main.temp_max)}${getUnitSymbol()}</p>
 <p>Wind Speed: ${data.wind.speed} m/s</p>
 <p>Humidity: ${data.main.humidity}%</p>
+<p>Pressure: ${data.main.pressure} hPa</p>
 <p>Visibility: ${data.visibility / 1000} km</p>
 <p>🌅 Sunrise: ${sunrise}</p>
 <p>🌇 Sunset: ${sunset}</p>
@@ -245,6 +246,7 @@ weatherCard.innerHTML=`
 <p>Max: ${Math.round(data.main.temp_max)}${getUnitSymbol()}</p>
 <p>Wind Speed: ${data.wind.speed} m/s</p>
 <p>Humidity: ${data.main.humidity}%</p>
+<p>Pressure: ${data.main.pressure} hPa</p>
 <p>Visibility: ${data.visibility / 1000} km</p>
 <p>🌅 Sunrise: ${sunrise}</p>
 <p>🌇 Sunset: ${sunset}</p>
