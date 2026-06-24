@@ -142,7 +142,7 @@ minute: '2-digit'
 });
 
 weatherCard.innerHTML=`
-<h2>${data.name}</h2>
+<h2>${data.name}, ${data.sys.country}</h2>
 <img src="https://openweathermap.org/img/wn/${icon}@2x.png">
 <h1>${Math.round(data.main.temp)}${getUnitSymbol()}</h1>
 <p>${data.weather[0].description}</p>
@@ -237,7 +237,7 @@ minute: '2-digit'
 });
 
 weatherCard.innerHTML=`
-<h2>${data.name}</h2>
+<h2>${data.name}, ${data.sys.country}</h2>
 <img src="https://openweathermap.org/img/wn/${icon}@2x.png">
 <h1>${Math.round(data.main.temp)}${getUnitSymbol()}</h1>
 <p>${data.weather[0].description}</p>
