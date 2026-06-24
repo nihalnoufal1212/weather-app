@@ -34,6 +34,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Minimum temperature display
 - Maximum temperature display
 - Atmospheric pressure display
+- Country code displayed with city name
 
 ---
 
