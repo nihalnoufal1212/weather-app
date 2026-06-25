@@ -140,7 +140,9 @@ const sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString([], {
 hour: '2-digit',
 minute: '2-digit'
 });
-
+const directions = ["N","NE","E","SE","S","SW","W","NW"];
+const windDirection =
+directions[Math.round(data.wind.deg / 45) % 8];
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img src="https://openweathermap.org/img/wn/${icon}@2x.png">
@@ -149,7 +151,7 @@ weatherCard.innerHTML=`
 <p>Feels Like: ${Math.round(data.main.feels_like)}${getUnitSymbol()}</p>
 <p>Min: ${Math.round(data.main.temp_min)}${getUnitSymbol()}</p>
 <p>Max: ${Math.round(data.main.temp_max)}${getUnitSymbol()}</p>
-<p>Wind Speed: ${data.wind.speed} m/s</p>
+<p>Wind: ${data.wind.speed} m/s (${windDirection})</p>
 <p>Humidity: ${data.main.humidity}%</p>
 <p>Pressure: ${data.main.pressure} hPa</p>
 <p>Visibility: ${data.visibility / 1000} km</p>
@@ -235,7 +237,9 @@ const sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString([], {
 hour: '2-digit',
 minute: '2-digit'
 });
-
+const directions = ["N","NE","E","SE","S","SW","W","NW"];
+const windDirection =
+directions[Math.round(data.wind.deg / 45) % 8];
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img src="https://openweathermap.org/img/wn/${icon}@2x.png">
@@ -244,7 +248,7 @@ weatherCard.innerHTML=`
 <p>Feels Like: ${Math.round(data.main.feels_like)}${getUnitSymbol()}</p>
 <p>Min: ${Math.round(data.main.temp_min)}${getUnitSymbol()}</p>
 <p>Max: ${Math.round(data.main.temp_max)}${getUnitSymbol()}</p>
-<p>Wind Speed: ${data.wind.speed} m/s</p>
+<p>Wind: ${data.wind.speed} m/s (${windDirection})</p>
 <p>Humidity: ${data.main.humidity}%</p>
 <p>Pressure: ${data.main.pressure} hPa</p>
 <p>Visibility: ${data.visibility / 1000} km</p>
