@@ -145,7 +145,10 @@ const windDirection =
 directions[Math.round(data.wind.deg / 45) % 8];
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
-<img src="https://openweathermap.org/img/wn/${icon}@2x.png">
+<img
+src="https://openweathermap.org/img/wn/${icon}@2x.png"
+title="${data.weather[0].description}"
+alt="${data.weather[0].description}">
 <h1>${Math.round(data.main.temp)}${getUnitSymbol()}</h1>
 <p>${data.weather[0].description}</p>
 <p>Feels Like: ${Math.round(data.main.feels_like)}${getUnitSymbol()}</p>
@@ -242,7 +245,10 @@ const windDirection =
 directions[Math.round(data.wind.deg / 45) % 8];
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
-<img src="https://openweathermap.org/img/wn/${icon}@2x.png">
+<img
+src="https://openweathermap.org/img/wn/${icon}@2x.png"
+title="${data.weather[0].description}"
+alt="${data.weather[0].description}">
 <h1>${Math.round(data.main.temp)}${getUnitSymbol()}</h1>
 <p>${data.weather[0].description}</p>
 <p>Feels Like: ${Math.round(data.main.feels_like)}${getUnitSymbol()}</p>
