@@ -143,6 +143,14 @@ minute: '2-digit'
 const directions = ["N","NE","E","SE","S","SW","W","NW"];
 const windDirection =
 directions[Math.round(data.wind.deg / 45) % 8];
+const feelsDiff = Math.round(data.main.feels_like - data.main.temp);
+
+const feelsText =
+feelsDiff === 0
+? "(Same)"
+: feelsDiff > 0
+? `(+${feelsDiff}${getUnitSymbol()})`
+: `(${feelsDiff}${getUnitSymbol()})`;
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -151,7 +159,11 @@ title="${data.weather[0].description}"
 alt="${data.weather[0].description}">
 <h1>${Math.round(data.main.temp)}${getUnitSymbol()}</h1>
 <p>${data.weather[0].description}</p>
-<p>Feels Like: ${Math.round(data.main.feels_like)}${getUnitSymbol()}</p>
+<p>
+Feels Like:
+${Math.round(data.main.feels_like)}${getUnitSymbol()}
+${feelsText}
+</p>
 <p>Min: ${Math.round(data.main.temp_min)}${getUnitSymbol()}</p>
 <p>Max: ${Math.round(data.main.temp_max)}${getUnitSymbol()}</p>
 <p>Wind: ${data.wind.speed} m/s (${windDirection})</p>
@@ -243,6 +255,14 @@ minute: '2-digit'
 const directions = ["N","NE","E","SE","S","SW","W","NW"];
 const windDirection =
 directions[Math.round(data.wind.deg / 45) % 8];
+const feelsDiff = Math.round(data.main.feels_like - data.main.temp);
+
+const feelsText =
+feelsDiff === 0
+? "(Same)"
+: feelsDiff > 0
+? `(+${feelsDiff}${getUnitSymbol()})`
+: `(${feelsDiff}${getUnitSymbol()})`;
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -251,7 +271,11 @@ title="${data.weather[0].description}"
 alt="${data.weather[0].description}">
 <h1>${Math.round(data.main.temp)}${getUnitSymbol()}</h1>
 <p>${data.weather[0].description}</p>
-<p>Feels Like: ${Math.round(data.main.feels_like)}${getUnitSymbol()}</p>
+<p>
+Feels Like:
+${Math.round(data.main.feels_like)}${getUnitSymbol()}
+${feelsText}
+</p>
 <p>Min: ${Math.round(data.main.temp_min)}${getUnitSymbol()}</p>
 <p>Max: ${Math.round(data.main.temp_max)}${getUnitSymbol()}</p>
 <p>Wind: ${data.wind.speed} m/s (${windDirection})</p>
