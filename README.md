@@ -37,6 +37,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Country code displayed with city name
 - Wind direction display
 - Tooltip and alt text for weather icons
+- Feels-like temperature difference indicator
 
 ---
 
