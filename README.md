@@ -39,6 +39,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Tooltip and alt text for weather icons
 - Feels-like temperature difference indicator
 - Displays temperature with one decimal place
+- Displays feels-like temperature with one decimal place
 
 ---
 
