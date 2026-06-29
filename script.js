@@ -159,11 +159,7 @@ title="${data.weather[0].description}"
 alt="${data.weather[0].description}">
 <h1>${data.main.temp.toFixed(1)}${getUnitSymbol()}</h1>
 <p>${data.weather[0].description}</p>
-<p>
-Feels Like:
-${Math.round(data.main.feels_like)}${getUnitSymbol()}
-${feelsText}
-</p>
+<p>Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p>
 <p>Min: ${Math.round(data.main.temp_min)}${getUnitSymbol()}</p>
 <p>Max: ${Math.round(data.main.temp_max)}${getUnitSymbol()}</p>
 <p>Wind: ${data.wind.speed} m/s (${windDirection})</p>
@@ -271,11 +267,7 @@ title="${data.weather[0].description}"
 alt="${data.weather[0].description}">
 <h1>${data.main.temp.toFixed(1)}${getUnitSymbol()}</h1>
 <p>${data.weather[0].description}</p>
-<p>
-Feels Like:
-${Math.round(data.main.feels_like)}${getUnitSymbol()}
-${feelsText}
-</p>
+<p>Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p>
 <p>Min: ${Math.round(data.main.temp_min)}${getUnitSymbol()}</p>
 <p>Max: ${Math.round(data.main.temp_max)}${getUnitSymbol()}</p>
 <p>Wind: ${data.wind.speed} m/s (${windDirection})</p>
