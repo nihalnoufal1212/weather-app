@@ -160,8 +160,8 @@ alt="${data.weather[0].description}">
 <h1>${data.main.temp.toFixed(1)}${getUnitSymbol()}</h1>
 <p>${data.weather[0].description}</p>
 <p>Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p>
-<p>Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
-<p>Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
+<p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
+<p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
 <p>Wind: ${data.wind.speed} m/s (${windDirection})</p>
 <p>Humidity: ${data.main.humidity}%</p>
 <p>Pressure: ${data.main.pressure} hPa</p>
@@ -268,8 +268,8 @@ alt="${data.weather[0].description}">
 <h1>${data.main.temp.toFixed(1)}${getUnitSymbol()}</h1>
 <p>${data.weather[0].description}</p>
 <p>Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p>
-<p>Min: ${Math.round(data.main.temp_min)}${getUnitSymbol()}</p>
-<p>Max: ${Math.round(data.main.temp_max)}${getUnitSymbol()}</p>
+<p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
+<p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
 <p>Wind: ${data.wind.speed} m/s (${windDirection})</p>
 <p>Humidity: ${data.main.humidity}%</p>
 <p>Pressure: ${data.main.pressure} hPa</p>
