@@ -42,6 +42,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Displays feels-like temperature with one decimal place
 - Displays minimum and maximum temperatures with one decimal place
 - Visual indicators for minimum and maximum temperatures
+- Improved wind speed labeling
 
 ---
 
