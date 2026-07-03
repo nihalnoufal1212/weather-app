@@ -43,6 +43,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Displays minimum and maximum temperatures with one decimal place
 - Visual indicators for minimum and maximum temperatures
 - Improved wind speed labeling
+- Improved humidity display with visual icon
 
 ---
 
