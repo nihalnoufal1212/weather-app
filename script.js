@@ -163,7 +163,7 @@ alt="${data.weather[0].description}">
 <p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
 <p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
 <p>💨 Wind Speed: ${data.wind.speed} m/s (${windDirection})</p>
-<p>Humidity: ${data.main.humidity}%</p>
+<p>💧 Humidity: ${data.main.humidity}%</p>
 <p>Pressure: ${data.main.pressure} hPa</p>
 <p>Visibility: ${data.visibility / 1000} km</p>
 <p>🌅 Sunrise: ${sunrise}</p>
@@ -271,7 +271,7 @@ alt="${data.weather[0].description}">
 <p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
 <p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
 <p>💨 Wind Speed: ${data.wind.speed} m/s (${windDirection})</p>
-<p>Humidity: ${data.main.humidity}%</p>
+<p>💧 Humidity: ${data.main.humidity}%</p>
 <p>Pressure: ${data.main.pressure} hPa</p>
 <p>Visibility: ${data.visibility / 1000} km</p>
 <p>🌅 Sunrise: ${sunrise}</p>
