@@ -45,6 +45,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Improved wind speed labeling
 - Improved humidity display with visual icon
 - Improved visibility display with visual icon
+- Visual icon for feels-like temperature
 
 ---
 
