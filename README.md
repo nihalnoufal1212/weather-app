@@ -47,6 +47,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Improved visibility display with visual icon
 - Visual icon for feels-like temperature
 - Visual icon for atmospheric pressure
+- Humidity comfort status (Low, Comfortable, High)
 ---
 
 ### 📍 Location Weather
