@@ -151,6 +151,15 @@ feelsDiff === 0
 : feelsDiff > 0
 ? `(+${feelsDiff}${getUnitSymbol()})`
 : `(${feelsDiff}${getUnitSymbol()})`;
+let humidityStatus = "";
+
+if (data.main.humidity < 30) {
+    humidityStatus = "Low";
+} else if (data.main.humidity <= 60) {
+    humidityStatus = "Comfortable";
+} else {
+    humidityStatus = "High";
+}
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -162,7 +171,7 @@ alt="${data.weather[0].description}">
 <p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p><p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
 <p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
 <p>💨 Wind Speed: ${data.wind.speed} m/s (${windDirection})</p>
-<p>💧 Humidity: ${data.main.humidity}%</p>
+<p>💧 Humidity: ${data.main.humidity}% (${humidityStatus})</p>
 <p>🌍 Pressure: ${data.main.pressure} hPa</p>
 <p>👁️ Visibility: ${data.visibility / 1000} km</p>
 <p>🌅 Sunrise: ${sunrise}</p>
@@ -258,6 +267,15 @@ feelsDiff === 0
 : feelsDiff > 0
 ? `(+${feelsDiff}${getUnitSymbol()})`
 : `(${feelsDiff}${getUnitSymbol()})`;
+let humidityStatus = "";
+
+if (data.main.humidity < 30) {
+    humidityStatus = "Low";
+} else if (data.main.humidity <= 60) {
+    humidityStatus = "Comfortable";
+} else {
+    humidityStatus = "High";
+}
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -269,8 +287,7 @@ alt="${data.weather[0].description}">
 <p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p><p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
 <p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
 <p>💨 Wind Speed: ${data.wind.speed} m/s (${windDirection})</p>
-<p>💧 Humidity: ${data.main.humidity}%</p>
-<p>🌍 Pressure: ${data.main.pressure} hPa</p>
+<p>💧 Humidity: ${data.main.humidity}% (${humidityStatus})</p><p>🌍 Pressure: ${data.main.pressure} hPa</p>
 <p>👁️ Visibility: ${data.visibility / 1000} km</p>
 <p>🌅 Sunrise: ${sunrise}</p>
 <p>🌇 Sunset: ${sunset}</p>
