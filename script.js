@@ -160,13 +160,24 @@ if (data.main.humidity < 30) {
 } else {
     humidityStatus = "High";
 }
+let temperatureStatus = "";
+
+if (data.main.temp < 15) {
+    temperatureStatus = "Cold";
+} else if (data.main.temp < 25) {
+    temperatureStatus = "Pleasant";
+} else if (data.main.temp < 35) {
+    temperatureStatus = "Warm";
+} else {
+    temperatureStatus = "Hot";
+}
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
 src="https://openweathermap.org/img/wn/${icon}@2x.png"
 title="${data.weather[0].description}"
 alt="${data.weather[0].description}">
-<h1>${data.main.temp.toFixed(1)}${getUnitSymbol()}</h1>
+<h1>${data.main.temp.toFixed(1)}${getUnitSymbol()} (${temperatureStatus})</h1>
 <p>${data.weather[0].description}</p>
 <p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p><p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
 <p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
@@ -276,18 +287,30 @@ if (data.main.humidity < 30) {
 } else {
     humidityStatus = "High";
 }
+let temperatureStatus = "";
+
+if (data.main.temp < 15) {
+    temperatureStatus = "Cold";
+} else if (data.main.temp < 25) {
+    temperatureStatus = "Pleasant";
+} else if (data.main.temp < 35) {
+    temperatureStatus = "Warm";
+} else {
+    temperatureStatus = "Hot";
+}
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
 src="https://openweathermap.org/img/wn/${icon}@2x.png"
 title="${data.weather[0].description}"
 alt="${data.weather[0].description}">
-<h1>${data.main.temp.toFixed(1)}${getUnitSymbol()}</h1>
+<h1>${data.main.temp.toFixed(1)}${getUnitSymbol()} (${temperatureStatus})</h1>
 <p>${data.weather[0].description}</p>
 <p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p><p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
 <p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
 <p>💨 Wind Speed: ${data.wind.speed} m/s (${windDirection})</p>
-<p>💧 Humidity: ${data.main.humidity}% (${humidityStatus})</p><p>🌍 Pressure: ${data.main.pressure} hPa</p>
+<p>💧 Humidity: ${data.main.humidity}% (${humidityStatus})</p>
+<p>🌍 Pressure: ${data.main.pressure} hPa</p>
 <p>👁️ Visibility: ${data.visibility / 1000} km</p>
 <p>🌅 Sunrise: ${sunrise}</p>
 <p>🌇 Sunset: ${sunset}</p>
