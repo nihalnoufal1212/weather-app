@@ -171,6 +171,15 @@ if (data.main.temp < 15) {
 } else {
     temperatureStatus = "Hot";
 }
+let windStrength = "";
+
+if (data.wind.speed < 2) {
+    windStrength = "Light";
+} else if (data.wind.speed < 6) {
+    windStrength = "Moderate";
+} else {
+    windStrength = "Strong";
+}
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -181,7 +190,7 @@ alt="${data.weather[0].description}">
 <p>${data.weather[0].description}</p>
 <p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p><p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
 <p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
-<p>💨 Wind Speed: ${data.wind.speed} m/s (${windDirection})</p>
+<p>💨 Wind Speed: ${data.wind.speed} m/s (${windDirection}) - ${windStrength}</p>
 <p>💧 Humidity: ${data.main.humidity}% (${humidityStatus})</p>
 <p>🌍 Pressure: ${data.main.pressure} hPa</p>
 <p>👁️ Visibility: ${data.visibility / 1000} km</p>
@@ -298,6 +307,15 @@ if (data.main.temp < 15) {
 } else {
     temperatureStatus = "Hot";
 }
+let windStrength = "";
+
+if (data.wind.speed < 2) {
+    windStrength = "Light";
+} else if (data.wind.speed < 6) {
+    windStrength = "Moderate";
+} else {
+    windStrength = "Strong";
+}
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -308,7 +326,7 @@ alt="${data.weather[0].description}">
 <p>${data.weather[0].description}</p>
 <p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p><p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
 <p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
-<p>💨 Wind Speed: ${data.wind.speed} m/s (${windDirection})</p>
+<p>💨 Wind Speed: ${data.wind.speed} m/s (${windDirection}) - ${windStrength}</p>
 <p>💧 Humidity: ${data.main.humidity}% (${humidityStatus})</p>
 <p>🌍 Pressure: ${data.main.pressure} hPa</p>
 <p>👁️ Visibility: ${data.visibility / 1000} km</p>
