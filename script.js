@@ -193,6 +193,7 @@ alt="${data.weather[0].description}">
 <p>💨 Wind Speed: ${data.wind.speed} m/s (${windDirection}) - ${windStrength}</p>
 <p>💧 Humidity: ${data.main.humidity}% (${humidityStatus})</p>
 <p>🌍 Pressure: ${data.main.pressure} hPa</p>
+<p>☁️ Cloud Coverage: ${data.clouds.all}%</p>
 <p>👁️ Visibility: ${data.visibility / 1000} km</p>
 <p>🌅 Sunrise: ${sunrise}</p>
 <p>🌇 Sunset: ${sunset}</p>
@@ -329,6 +330,7 @@ alt="${data.weather[0].description}">
 <p>💨 Wind Speed: ${data.wind.speed} m/s (${windDirection}) - ${windStrength}</p>
 <p>💧 Humidity: ${data.main.humidity}% (${humidityStatus})</p>
 <p>🌍 Pressure: ${data.main.pressure} hPa</p>
+<p>☁️ Cloud Coverage: ${data.clouds.all}%</p>
 <p>👁️ Visibility: ${data.visibility / 1000} km</p>
 <p>🌅 Sunrise: ${sunrise}</p>
 <p>🌇 Sunset: ${sunset}</p>
