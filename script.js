@@ -221,7 +221,11 @@ return;
 }
 
 data.list.slice(0,5).forEach(item=>{
-const time = item.dt_txt.split(" ")[1].slice(0,5);
+const time = new Date(item.dt_txt).toLocaleTimeString([], {
+hour: "numeric",
+minute: "2-digit",
+hour12: true
+});
 const temp = Math.round(item.main.temp);
 const icon = item.weather[0].icon;
 
@@ -352,8 +356,11 @@ return;
 }
 
 data.list.slice(0,5).forEach(item=>{
-const time = item.dt_txt.split(" ")[1].slice(0,5);
-const temp = Math.round(item.main.temp);
+const time = new Date(item.dt_txt).toLocaleTimeString([], {
+hour: "numeric",
+minute: "2-digit",
+hour12: true
+});const temp = Math.round(item.main.temp);
 const icon = item.weather[0].icon;
 
 const card = document.createElement("div");
