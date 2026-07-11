@@ -180,6 +180,8 @@ if (data.wind.speed < 2) {
 } else {
     windStrength = "Strong";
 }
+const showFeelsLike =
+Math.abs(data.main.feels_like - data.main.temp) >= 0.5;
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -188,7 +190,9 @@ title="${data.weather[0].description}"
 alt="${data.weather[0].description}">
 <h1>${data.main.temp.toFixed(1)}${getUnitSymbol()} (${temperatureStatus})</h1>
 <p>${data.weather[0].description}</p>
-<p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p><p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
+${showFeelsLike
+? `<p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p>`
+: ""}<p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
 <p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
 <p>💨 Wind Speed: ${data.wind.speed} m/s (${windDirection}) - ${windStrength}</p>
 <p>💧 Humidity: ${data.main.humidity}% (${humidityStatus})</p>
@@ -360,7 +364,8 @@ const time = new Date(item.dt_txt).toLocaleTimeString([], {
 hour: "numeric",
 minute: "2-digit",
 hour12: true
-});const temp = Math.round(item.main.temp);
+});
+const temp = Math.round(item.main.temp);
 const icon = item.weather[0].icon;
 
 const card = document.createElement("div");
