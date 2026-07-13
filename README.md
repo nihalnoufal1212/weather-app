@@ -52,6 +52,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Wind strength indicator (Light, Moderate, Strong)
 - Cloud coverage percentage
 - Smart feels-like display (shown only when noticeably different from the actual temperature)
+- Color-coded temperature comfort status
 ---
 
 ### 📍 Location Weather
