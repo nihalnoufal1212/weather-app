@@ -138,7 +138,21 @@ border-radius: 8px;
 -webkit-user-drag: none;
 width: 40px;
 }
+.cold{
+color:#4FC3F7;
+}
 
+.pleasant{
+color:#66BB6A;
+}
+
+.warm{
+color:#FFA726;
+}
+
+.hot{
+color:#EF5350;
+}
 /* Toast */
 #toast {
 visibility: hidden;
