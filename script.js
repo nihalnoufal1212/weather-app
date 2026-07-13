@@ -182,14 +182,19 @@ if (data.wind.speed < 2) {
 }
 const showFeelsLike =
 Math.abs(data.main.feels_like - data.main.temp) >= 0.5;
+let temperatureClass = temperatureStatus.toLowerCase();
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
 src="https://openweathermap.org/img/wn/${icon}@2x.png"
 title="${data.weather[0].description}"
 alt="${data.weather[0].description}">
-<h1>${data.main.temp.toFixed(1)}${getUnitSymbol()} (${temperatureStatus})</h1>
-<p>${data.weather[0].description}</p>
+<h1>
+${data.main.temp.toFixed(1)}${getUnitSymbol()}
+<span class="${temperatureClass}">
+(${temperatureStatus})
+</span>
+</h1><p>${data.weather[0].description}</p>
 ${showFeelsLike
 ? `<p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p>`
 : ""}<p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
@@ -325,13 +330,19 @@ if (data.wind.speed < 2) {
 } else {
     windStrength = "Strong";
 }
+let temperatureClass = temperatureStatus.toLowerCase();
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
 src="https://openweathermap.org/img/wn/${icon}@2x.png"
 title="${data.weather[0].description}"
 alt="${data.weather[0].description}">
-<h1>${data.main.temp.toFixed(1)}${getUnitSymbol()} (${temperatureStatus})</h1>
+<h1>
+${data.main.temp.toFixed(1)}${getUnitSymbol()}
+<span class="${temperatureClass}">
+(${temperatureStatus})
+</span>
+</h1>
 <p>${data.weather[0].description}</p>
 <p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p><p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
 <p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
