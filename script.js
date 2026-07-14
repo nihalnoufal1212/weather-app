@@ -183,6 +183,22 @@ if (data.wind.speed < 2) {
 const showFeelsLike =
 Math.abs(data.main.feels_like - data.main.temp) >= 0.5;
 let temperatureClass = temperatureStatus.toLowerCase();
+let temperatureEmoji = "";
+
+switch (temperatureStatus) {
+    case "Cold":
+        temperatureEmoji = "❄️";
+        break;
+    case "Pleasant":
+        temperatureEmoji = "🌤️";
+        break;
+    case "Warm":
+        temperatureEmoji = "☀️";
+        break;
+    case "Hot":
+        temperatureEmoji = "🔥";
+        break;
+}
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -192,9 +208,10 @@ alt="${data.weather[0].description}">
 <h1>
 ${data.main.temp.toFixed(1)}${getUnitSymbol()}
 <span class="${temperatureClass}">
-(${temperatureStatus})
+${temperatureEmoji} ${temperatureStatus}
 </span>
-</h1><p>${data.weather[0].description}</p>
+</h1>
+<p>${data.weather[0].description}</p>
 ${showFeelsLike
 ? `<p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p>`
 : ""}<p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
@@ -331,6 +348,22 @@ if (data.wind.speed < 2) {
     windStrength = "Strong";
 }
 let temperatureClass = temperatureStatus.toLowerCase();
+let temperatureEmoji = "";
+
+switch (temperatureStatus) {
+    case "Cold":
+        temperatureEmoji = "❄️";
+        break;
+    case "Pleasant":
+        temperatureEmoji = "🌤️";
+        break;
+    case "Warm":
+        temperatureEmoji = "☀️";
+        break;
+    case "Hot":
+        temperatureEmoji = "🔥";
+        break;
+}
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -340,7 +373,7 @@ alt="${data.weather[0].description}">
 <h1>
 ${data.main.temp.toFixed(1)}${getUnitSymbol()}
 <span class="${temperatureClass}">
-(${temperatureStatus})
+${temperatureEmoji} ${temperatureStatus}
 </span>
 </h1>
 <p>${data.weather[0].description}</p>
