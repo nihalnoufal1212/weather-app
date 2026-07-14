@@ -53,6 +53,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Cloud coverage percentage
 - Smart feels-like display (shown only when noticeably different from the actual temperature)
 - Color-coded temperature comfort status
+- Emoji indicators for temperature comfort status
 ---
 
 ### 📍 Location Weather
