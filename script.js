@@ -219,7 +219,12 @@ ${showFeelsLike
 : ""}<p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
 <p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
 <p>💨 Wind Speed: ${data.wind.speed} m/s (${windDirection}) - ${windStrength}</p>
-<p>💧 Humidity: ${data.main.humidity}% (${humidityStatus})</p>
+<p>
+💧 Humidity: ${data.main.humidity}%
+<span class="${humidityClass}">
+(${humidityStatus})
+</span>
+</p>
 <p>🌍 Pressure: ${data.main.pressure} hPa</p>
 <p>☁️ Cloud Coverage: ${data.clouds.all}%</p>
 <p>👁️ Visibility: ${data.visibility / 1000} km</p>
@@ -384,7 +389,12 @@ ${temperatureEmoji} ${temperatureStatus}
 <p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p><p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
 <p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
 <p>💨 Wind Speed: ${data.wind.speed} m/s (${windDirection}) - ${windStrength}</p>
-<p>💧 Humidity: ${data.main.humidity}% (${humidityStatus})</p>
+<p>
+💧 Humidity: ${data.main.humidity}%
+<span class="${humidityClass}">
+(${humidityStatus})
+</span>
+</p>
 <p>🌍 Pressure: ${data.main.pressure} hPa</p>
 <p>☁️ Cloud Coverage: ${data.clouds.all}%</p>
 <p>👁️ Visibility: ${data.visibility / 1000} km</p>
