@@ -153,6 +153,17 @@ color:#FFA726;
 .hot{
 color:#EF5350;
 }
+.humidity-low{
+color:#64B5F6;
+}
+
+.humidity-comfortable{
+color:#66BB6A;
+}
+
+.humidity-high{
+color:#EF5350;
+}
 /* Toast */
 #toast {
 visibility: hidden;
