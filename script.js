@@ -152,6 +152,8 @@ feelsDiff === 0
 ? `(+${feelsDiff}${getUnitSymbol()})`
 : `(${feelsDiff}${getUnitSymbol()})`;
 let humidityStatus = "";
+let humidityClass =
+"humidity-" + humidityStatus.toLowerCase();
 
 if (data.main.humidity < 30) {
     humidityStatus = "Low";
@@ -327,6 +329,8 @@ if (data.main.humidity < 30) {
 } else {
     humidityStatus = "High";
 }
+let humidityClass =
+"humidity-" + humidityStatus.toLowerCase();
 let temperatureStatus = "";
 
 if (data.main.temp < 15) {
