@@ -201,6 +201,17 @@ switch (temperatureStatus) {
         temperatureEmoji = "🔥";
         break;
 }
+const sunrise = new Date(data.sys.sunrise * 1000).toLocaleTimeString([], {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true
+});
+
+const sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString([], {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true
+});
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -373,6 +384,17 @@ switch (temperatureStatus) {
         temperatureEmoji = "🔥";
         break;
 }
+const sunrise = new Date(data.sys.sunrise * 1000).toLocaleTimeString([], {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true
+});
+
+const sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString([], {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true
+});
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
