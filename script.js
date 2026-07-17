@@ -212,6 +212,35 @@ const sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString([], {
     minute: "2-digit",
     hour12: true
 });
+let weatherEmoji = "";
+
+switch (data.weather[0].main) {
+    case "Clear":
+        weatherEmoji = "☀️";
+        break;
+    case "Clouds":
+        weatherEmoji = "☁️";
+        break;
+    case "Rain":
+        weatherEmoji = "🌧️";
+        break;
+    case "Drizzle":
+        weatherEmoji = "🌦️";
+        break;
+    case "Thunderstorm":
+        weatherEmoji = "⛈️";
+        break;
+    case "Snow":
+        weatherEmoji = "❄️";
+        break;
+    case "Mist":
+    case "Fog":
+    case "Haze":
+        weatherEmoji = "🌫️";
+        break;
+    default:
+        weatherEmoji = "🌍";
+}
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -224,7 +253,7 @@ ${data.main.temp.toFixed(1)}${getUnitSymbol()}
 ${temperatureEmoji} ${temperatureStatus}
 </span>
 </h1>
-<p>${data.weather[0].description}</p>
+<p>${weatherEmoji} ${data.weather[0].description}</p>
 ${showFeelsLike
 ? `<p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p>`
 : ""}<p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
@@ -395,6 +424,35 @@ const sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString([], {
     minute: "2-digit",
     hour12: true
 });
+let weatherEmoji = "";
+
+switch (data.weather[0].main) {
+    case "Clear":
+        weatherEmoji = "☀️";
+        break;
+    case "Clouds":
+        weatherEmoji = "☁️";
+        break;
+    case "Rain":
+        weatherEmoji = "🌧️";
+        break;
+    case "Drizzle":
+        weatherEmoji = "🌦️";
+        break;
+    case "Thunderstorm":
+        weatherEmoji = "⛈️";
+        break;
+    case "Snow":
+        weatherEmoji = "❄️";
+        break;
+    case "Mist":
+    case "Fog":
+    case "Haze":
+        weatherEmoji = "🌫️";
+        break;
+    default:
+        weatherEmoji = "🌍";
+}
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -407,7 +465,7 @@ ${data.main.temp.toFixed(1)}${getUnitSymbol()}
 ${temperatureEmoji} ${temperatureStatus}
 </span>
 </h1>
-<p>${data.weather[0].description}</p>
+<p>${weatherEmoji} ${data.weather[0].description}</p>
 <p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p><p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
 <p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
 <p>💨 Wind Speed: ${data.wind.speed} m/s (${windDirection}) - ${windStrength}</p>
