@@ -241,6 +241,10 @@ switch (data.weather[0].main) {
     default:
         weatherEmoji = "🌍";
 }
+const weatherDescription = data.weather[0].description
+    .split(" ")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -253,7 +257,7 @@ ${data.main.temp.toFixed(1)}${getUnitSymbol()}
 ${temperatureEmoji} ${temperatureStatus}
 </span>
 </h1>
-<p>${weatherEmoji} ${data.weather[0].description}</p>
+<p>${weatherEmoji} ${weatherDescription}</p>
 ${showFeelsLike
 ? `<p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p>`
 : ""}<p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
@@ -453,6 +457,11 @@ switch (data.weather[0].main) {
     default:
         weatherEmoji = "🌍";
 }
+const weatherDescription = data.weather[0].description
+    .split(" ")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -465,7 +474,7 @@ ${data.main.temp.toFixed(1)}${getUnitSymbol()}
 ${temperatureEmoji} ${temperatureStatus}
 </span>
 </h1>
-<p>${weatherEmoji} ${data.weather[0].description}</p>
+<p>${weatherEmoji} ${weatherDescription}</p>
 <p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p><p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
 <p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
 <p>💨 Wind Speed: ${data.wind.speed} m/s (${windDirection}) - ${windStrength}</p>
