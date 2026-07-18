@@ -57,6 +57,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Color-coded humidity comfort status
 - Sunrise and sunset displayed in 12-hour format with icons
 - Weather condition icons with descriptive emojis
+- Automatically capitalized weather descriptions
 ---
 
 ### 📍 Location Weather
