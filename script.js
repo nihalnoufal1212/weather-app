@@ -245,6 +245,36 @@ const weatherDescription = data.weather[0].description
     .split(" ")
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
+
+let windArrow = "";
+
+switch (windDirection) {
+    case "N":
+        windArrow = "⬆️";
+        break;
+    case "NE":
+        windArrow = "↗️";
+        break;
+    case "E":
+        windArrow = "➡️";
+        break;
+    case "SE":
+        windArrow = "↘️";
+        break;
+    case "S":
+        windArrow = "⬇️";
+        break;
+    case "SW":
+        windArrow = "↙️";
+        break;
+    case "W":
+        windArrow = "⬅️";
+        break;
+    case "NW":
+        windArrow = "↖️";
+        break;
+}
+
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -262,8 +292,7 @@ ${showFeelsLike
 ? `<p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p>`
 : ""}<p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
 <p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
-<p>💨 Wind Speed: ${data.wind.speed} m/s (${windDirection}) - ${windStrength}</p>
-<p>
+<p>🧭 Wind: ${windSpeed} ${windArrow} ${windDirection}</p><p>
 💧 Humidity: ${data.main.humidity}%
 <span class="${humidityClass}">
 (${humidityStatus})
@@ -461,7 +490,34 @@ const weatherDescription = data.weather[0].description
     .split(" ")
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
+let windArrow = "";
 
+switch (windDirection) {
+    case "N":
+        windArrow = "⬆️";
+        break;
+    case "NE":
+        windArrow = "↗️";
+        break;
+    case "E":
+        windArrow = "➡️";
+        break;
+    case "SE":
+        windArrow = "↘️";
+        break;
+    case "S":
+        windArrow = "⬇️";
+        break;
+    case "SW":
+        windArrow = "↙️";
+        break;
+    case "W":
+        windArrow = "⬅️";
+        break;
+    case "NW":
+        windArrow = "↖️";
+        break;
+}
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -477,8 +533,7 @@ ${temperatureEmoji} ${temperatureStatus}
 <p>${weatherEmoji} ${weatherDescription}</p>
 <p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p><p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
 <p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
-<p>💨 Wind Speed: ${data.wind.speed} m/s (${windDirection}) - ${windStrength}</p>
-<p>
+<p>🧭 Wind: ${windSpeed} ${windArrow} ${windDirection}</p><p>
 💧 Humidity: ${data.main.humidity}%
 <span class="${humidityClass}">
 (${humidityStatus})
