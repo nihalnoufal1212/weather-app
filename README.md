@@ -58,6 +58,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Sunrise and sunset displayed in 12-hour format with icons
 - Weather condition icons with descriptive emojis
 - Automatically capitalized weather descriptions
+- Directional arrows for wind direction
 ---
 
 ### 📍 Location Weather
