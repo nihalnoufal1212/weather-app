@@ -59,6 +59,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Weather condition icons with descriptive emojis
 - Automatically capitalized weather descriptions
 - Directional arrows for wind direction
+- Visibility displayed in kilometers for better readability
 ---
 
 ### 📍 Location Weather
