@@ -274,7 +274,7 @@ switch (windDirection) {
         windArrow = "↖️";
         break;
 }
-
+let visibilityKm = (data.visibility / 1000).toFixed(1);
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -300,7 +300,7 @@ ${showFeelsLike
 </p>
 <p>🌍 Pressure: ${data.main.pressure} hPa</p>
 <p>☁️ Cloud Coverage: ${data.clouds.all}%</p>
-<p>👁️ Visibility: ${data.visibility / 1000} km</p>
+<p>👁️ Visibility: ${visibilityKm} km</p>
 <p>🌅 Sunrise: ${sunrise}</p>
 <p>🌇 Sunset: ${sunset}</p>
 <p>🕒 Updated: ${updatedTime}</p>
@@ -518,6 +518,7 @@ switch (windDirection) {
         windArrow = "↖️";
         break;
 }
+let visibilityKm = (data.visibility / 1000).toFixed(1);
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -541,7 +542,7 @@ ${temperatureEmoji} ${temperatureStatus}
 </p>
 <p>🌍 Pressure: ${data.main.pressure} hPa</p>
 <p>☁️ Cloud Coverage: ${data.clouds.all}%</p>
-<p>👁️ Visibility: ${data.visibility / 1000} km</p>
+<p>👁️ Visibility: ${visibilityKm} km</p>
 <p>🌅 Sunrise: ${sunrise}</p>
 <p>🌇 Sunset: ${sunset}</p>
 <p>🕒 Updated: ${updatedTime}</p>
