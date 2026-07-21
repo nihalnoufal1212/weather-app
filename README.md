@@ -60,6 +60,7 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 - Automatically capitalized weather descriptions
 - Directional arrows for wind direction
 - Visibility displayed in kilometers for better readability
+- Displays the difference between actual and feels-like temperature
 ---
 
 ### 📍 Location Weather
