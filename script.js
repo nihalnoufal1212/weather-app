@@ -275,6 +275,15 @@ switch (windDirection) {
         break;
 }
 let visibilityKm = (data.visibility / 1000).toFixed(1);
+let feelsLikeDifference = (data.main.feels_like - data.main.temp).toFixed(1);
+
+if (feelsLikeDifference > 0) {
+    feelsLikeDifference = `+${feelsLikeDifference}°`;
+} else {
+    feelsLikeDifference = `${feelsLikeDifference}°`;
+}
+
+
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -289,7 +298,10 @@ ${temperatureEmoji} ${temperatureStatus}
 </h1>
 <p>${weatherEmoji} ${weatherDescription}</p>
 ${showFeelsLike
-? `<p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p>`
+? `<p>
+🌡️ Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}
+(${feelsLikeDifference})
+</p>`
 : ""}<p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
 <p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
 <p>🧭 Wind: ${windSpeed} ${windArrow} ${windDirection}</p><p>
@@ -519,6 +531,15 @@ switch (windDirection) {
         break;
 }
 let visibilityKm = (data.visibility / 1000).toFixed(1);
+let feelsLikeDifference = (data.main.feels_like - data.main.temp).toFixed(1);
+
+if (feelsLikeDifference > 0) {
+    feelsLikeDifference = `+${feelsLikeDifference}°`;
+} else {
+    feelsLikeDifference = `${feelsLikeDifference}°`;
+}
+
+
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
@@ -532,7 +553,10 @@ ${temperatureEmoji} ${temperatureStatus}
 </span>
 </h1>
 <p>${weatherEmoji} ${weatherDescription}</p>
-<p>🤗 Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}</p><p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
+<p>
+🌡️ Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}
+(${feelsLikeDifference})
+</p><p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
 <p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
 <p>🧭 Wind: ${windSpeed} ${windArrow} ${windDirection}</p><p>
 💧 Humidity: ${data.main.humidity}%
