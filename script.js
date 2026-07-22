@@ -8,7 +8,7 @@ const themeBtn = document.getElementById("theme-toggle");
 const clearHistoryBtn = document.getElementById("clear-history-btn");
 
 /* ===== API KEY FALLBACK ===== */
-const LOCAL_API_KEY = "PASTE YOUR API KEY";
+const LOCAL_API_KEY = "PASTE-YOUR-API-KEY";
 const FINAL_API_KEY = typeof API_KEY !== "undefined" ? API_KEY : LOCAL_API_KEY;
 
 const suggestionsBox = document.getElementById("suggestions-box");
@@ -146,8 +146,7 @@ feelsDiff === 0
 ? `(+${feelsDiff}${getUnitSymbol()})`
 : `(${feelsDiff}${getUnitSymbol()})`;
 let humidityStatus = "";
-let humidityClass =
-"humidity-" + humidityStatus.toLowerCase();
+
 
 if (data.main.humidity < 30) {
     humidityStatus = "Low";
@@ -156,6 +155,8 @@ if (data.main.humidity < 30) {
 } else {
     humidityStatus = "High";
 }
+let humidityClass =
+"humidity-" + humidityStatus.toLowerCase();
 let temperatureStatus = "";
 
 if (data.main.temp < 15) {
@@ -276,7 +277,7 @@ if (feelsLikeDifference > 0) {
 } else {
     feelsLikeDifference = `${feelsLikeDifference}°`;
 }
-
+let windSpeed = `${data.wind.speed} ${currentUnit === "metric" ? "m/s" : "mph"}`;
 
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
@@ -527,7 +528,7 @@ if (feelsLikeDifference > 0) {
     feelsLikeDifference = `${feelsLikeDifference}°`;
 }
 
-
+let windSpeed = `${data.wind.speed} ${currentUnit === "metric" ? "m/s" : "mph"}`;
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
 <img
