@@ -8,7 +8,7 @@ const themeBtn = document.getElementById("theme-toggle");
 const clearHistoryBtn = document.getElementById("clear-history-btn");
 
 /* ===== API KEY FALLBACK ===== */
-const LOCAL_API_KEY = "PASTE_YOUR_API_KEY_HERE";
+const LOCAL_API_KEY = "PASTE YOUR API KEY";
 const FINAL_API_KEY = typeof API_KEY !== "undefined" ? API_KEY : LOCAL_API_KEY;
 
 const suggestionsBox = document.getElementById("suggestions-box");
@@ -132,14 +132,8 @@ const updatedTime = new Date().toLocaleTimeString([], {
 hour: '2-digit',
 minute: '2-digit'
 });
-const sunrise = new Date(data.sys.sunrise * 1000).toLocaleTimeString([], {
-hour: '2-digit',
-minute: '2-digit'
-});
-const sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString([], {
-hour: '2-digit',
-minute: '2-digit'
-});
+
+
 const directions = ["N","NE","E","SE","S","SW","W","NW"];
 const windDirection =
 directions[Math.round(data.wind.deg / 45) % 8];
@@ -391,14 +385,8 @@ const updatedTime = new Date().toLocaleTimeString([], {
 hour: '2-digit',
 minute: '2-digit'
 });
-const sunrise = new Date(data.sys.sunrise * 1000).toLocaleTimeString([], {
-hour: '2-digit',
-minute: '2-digit'
-});
-const sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString([], {
-hour: '2-digit',
-minute: '2-digit'
-});
+
+
 const directions = ["N","NE","E","SE","S","SW","W","NW"];
 const windDirection =
 directions[Math.round(data.wind.deg / 45) % 8];
@@ -556,7 +544,8 @@ ${temperatureEmoji} ${temperatureStatus}
 <p>
 🌡️ Feels Like: ${data.main.feels_like.toFixed(1)}${getUnitSymbol()}
 (${feelsLikeDifference})
-</p><p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
+</p>
+<p>🔽 Min: ${data.main.temp_min.toFixed(1)}${getUnitSymbol()}</p>
 <p>🔼 Max: ${data.main.temp_max.toFixed(1)}${getUnitSymbol()}</p>
 <p>🧭 Wind: ${windSpeed} ${windArrow} ${windDirection}</p><p>
 💧 Humidity: ${data.main.humidity}%
