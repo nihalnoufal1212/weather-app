@@ -9,7 +9,7 @@ const themeBtn = document.getElementById("theme-toggle");
 const clearHistoryBtn = document.getElementById("clear-history-btn");
 
 /* ===== API KEY FALLBACK ===== */
-const LOCAL_API_KEY = "7070e3ff47cb4f87916b399856237e23";
+const LOCAL_API_KEY = "APIKEYHERE";
 const FINAL_API_KEY = typeof API_KEY !== "undefined" ? API_KEY : LOCAL_API_KEY;
 
 const suggestionsBox = document.getElementById("suggestions-box");
