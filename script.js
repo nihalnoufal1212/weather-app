@@ -1,3 +1,4 @@
+const recommendation = document.getElementById("recommendation");
 const cityInput = document.getElementById("city-input");
 const searchBtn = document.getElementById("search-btn");
 const locationBtn = document.getElementById("location-btn");
@@ -8,7 +9,7 @@ const themeBtn = document.getElementById("theme-toggle");
 const clearHistoryBtn = document.getElementById("clear-history-btn");
 
 /* ===== API KEY FALLBACK ===== */
-const LOCAL_API_KEY = "PASTE-YOUR-API-KEY";
+const LOCAL_API_KEY = "7070e3ff47cb4f87916b399856237e23";
 const FINAL_API_KEY = typeof API_KEY !== "undefined" ? API_KEY : LOCAL_API_KEY;
 
 const suggestionsBox = document.getElementById("suggestions-box");
@@ -116,6 +117,34 @@ const res = await fetch(
 `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${FINAL_API_KEY}&units=${currentUnit}`
 );
 const data = await res.json();
+const weatherMain = data.weather[0].main;
+
+let tip = "";
+
+switch (weatherMain) {
+    case "Rain":
+        tip = "☂️ Carry an umbrella.";
+        break;
+
+    case "Clear":
+        tip = "😎 Great day for outdoor activities.";
+        break;
+
+    case "Clouds":
+        tip = "☁️ Pleasant weather for a walk.";
+        break;
+
+    case "Thunderstorm":
+        tip = "⚡ Stay indoors if possible.";
+        break;
+
+    case "Snow":
+        tip = "🧥 Wear warm clothes.";
+        break;
+
+    default:
+        tip = "🌤️ Have a wonderful day!";
+}
 
 if(data.cod == 401){
 showToast("Use valid API key");
@@ -278,6 +307,10 @@ if (feelsLikeDifference > 0) {
     feelsLikeDifference = `${feelsLikeDifference}°`;
 }
 let windSpeed = `${data.wind.speed} ${currentUnit === "metric" ? "m/s" : "mph"}`;
+recommendation.innerHTML = `
+    <h3>💡 Today's Recommendation</h3>
+    <p>${tip}</p>
+`;
 
 weatherCard.innerHTML=`
 <h2>${data.name}, ${data.sys.country}</h2>
