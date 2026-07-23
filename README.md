@@ -7,7 +7,11 @@ This project is being developed step-by-step into a **portfolio-level frontend a
 ---
 
 ## 🚀 Features
+### New Features
 
+- 💡 Dynamic weather recommendation card
+- 🌤️ Displays personalized suggestions based on the current weather
+- 🔄 Updates automatically whenever a new city is searched
 ### 🌍 Current Weather
 
 * Search weather by city name
